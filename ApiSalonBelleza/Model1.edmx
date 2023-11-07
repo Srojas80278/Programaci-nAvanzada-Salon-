@@ -4,13 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="salonbellezaMNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="salonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="carrito">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="bigint" Nullable="false" />
           <Property Name="id_producto" Type="int" Nullable="false" />
           <Property Name="cantidad" Type="int" Nullable="false" />
           <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -22,7 +22,8 @@
           </Key>
           <Property Name="id_cita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="estilista" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="hora" Type="time" Precision="7" Nullable="false" />
           <Property Name="sede" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="nombre_cliente" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="servicio" Type="varchar" MaxLength="30" Nullable="false" />
@@ -42,20 +43,20 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombrecompleto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="role_id" Type="int" Nullable="false" />
+          <Property Name="role_id" Type="bigint" Nullable="false" />
         </EntityType>
-        <Association Name="FK__carrito__id_prod__412EB0B6">
+        <Association Name="FK__carrito__id_prod__534D60F1">
           <End Role="productos" Type="Self.productos" Multiplicity="1" />
           <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -67,7 +68,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__carrito__user_id__403A8C7D">
+        <Association Name="FK__carrito__user_id__52593CB8">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -79,7 +80,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__users__role_id__3B75D760">
+        <Association Name="FK__users__role_id__4D94879B">
           <End Role="roles" Type="Self.roles" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -92,6 +93,13 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="ConsultarCitaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="IniciarSesionSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RecuperarCuentaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="RegistrarCitaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="estilista" Type="varchar" Mode="In" />
           <Parameter Name="fecha" Type="datetime" Mode="In" />
@@ -100,21 +108,27 @@
           <Parameter Name="servicio" Type="varchar" Mode="In" />
           <Parameter Name="descripcion_servicio" Type="varchar" Mode="In" />
         </Function>
-        <EntityContainer Name="salonbellezaMNModelStoreContainer">
+        <Function Name="RegistrarCuentaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="role_id" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="salonModelStoreContainer">
           <EntitySet Name="carrito" EntityType="Self.carrito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="citas" EntityType="Self.citas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__carrito__id_prod__412EB0B6" Association="Self.FK__carrito__id_prod__412EB0B6">
+          <AssociationSet Name="FK__carrito__id_prod__534D60F1" Association="Self.FK__carrito__id_prod__534D60F1">
             <End Role="productos" EntitySet="productos" />
             <End Role="carrito" EntitySet="carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__carrito__user_id__403A8C7D" Association="Self.FK__carrito__user_id__403A8C7D">
+          <AssociationSet Name="FK__carrito__user_id__52593CB8" Association="Self.FK__carrito__user_id__52593CB8">
             <End Role="users" EntitySet="users" />
             <End Role="carrito" EntitySet="carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__users__role_id__3B75D760" Association="Self.FK__users__role_id__3B75D760">
+          <AssociationSet Name="FK__users__role_id__4D94879B" Association="Self.FK__users__role_id__4D94879B">
             <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
@@ -123,19 +137,19 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="salonbellezaMNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="salonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="carrito">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int64" Nullable="false" />
           <Property Name="id_producto" Type="Int32" Nullable="false" />
           <Property Name="cantidad" Type="Int32" Nullable="false" />
           <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="subtotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="productos" Relationship="Self.FK__carrito__id_prod__412EB0B6" FromRole="carrito" ToRole="productos" />
-          <NavigationProperty Name="users" Relationship="Self.FK__carrito__user_id__403A8C7D" FromRole="carrito" ToRole="users" />
+          <NavigationProperty Name="productos" Relationship="Self.FK__carrito__id_prod__534D60F1" FromRole="carrito" ToRole="productos" />
+          <NavigationProperty Name="users" Relationship="Self.FK__carrito__user_id__52593CB8" FromRole="carrito" ToRole="users" />
         </EntityType>
         <EntityType Name="citas">
           <Key>
@@ -143,7 +157,8 @@
           </Key>
           <Property Name="id_cita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="estilista" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
           <Property Name="sede" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombre_cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="servicio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
@@ -158,29 +173,29 @@
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="img" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="carrito" Relationship="Self.FK__carrito__id_prod__412EB0B6" FromRole="productos" ToRole="carrito" />
+          <NavigationProperty Name="carrito" Relationship="Self.FK__carrito__id_prod__534D60F1" FromRole="productos" ToRole="carrito" />
         </EntityType>
         <EntityType Name="roles">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="users" Relationship="Self.FK__users__role_id__3B75D760" FromRole="roles" ToRole="users" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK__users__role_id__4D94879B" FromRole="roles" ToRole="users" />
         </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombrecompleto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="role_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="carrito" Relationship="Self.FK__carrito__user_id__403A8C7D" FromRole="users" ToRole="carrito" />
-          <NavigationProperty Name="roles" Relationship="Self.FK__users__role_id__3B75D760" FromRole="users" ToRole="roles" />
+          <Property Name="role_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="carrito" Relationship="Self.FK__carrito__user_id__52593CB8" FromRole="users" ToRole="carrito" />
+          <NavigationProperty Name="roles" Relationship="Self.FK__users__role_id__4D94879B" FromRole="users" ToRole="roles" />
         </EntityType>
-        <Association Name="FK__carrito__id_prod__412EB0B6">
+        <Association Name="FK__carrito__id_prod__534D60F1">
           <End Role="productos" Type="Self.productos" Multiplicity="1" />
           <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -192,7 +207,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__carrito__user_id__403A8C7D">
+        <Association Name="FK__carrito__user_id__52593CB8">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -204,7 +219,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__users__role_id__3B75D760">
+        <Association Name="FK__users__role_id__4D94879B">
           <End Role="roles" Type="Self.roles" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -222,19 +237,26 @@
           <EntitySet Name="productos" EntityType="Self.productos" />
           <EntitySet Name="roles" EntityType="Self.roles" />
           <EntitySet Name="users" EntityType="Self.users" />
-          <AssociationSet Name="FK__carrito__id_prod__412EB0B6" Association="Self.FK__carrito__id_prod__412EB0B6">
+          <AssociationSet Name="FK__carrito__id_prod__534D60F1" Association="Self.FK__carrito__id_prod__534D60F1">
             <End Role="productos" EntitySet="productos" />
             <End Role="carrito" EntitySet="carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__carrito__user_id__403A8C7D" Association="Self.FK__carrito__user_id__403A8C7D">
+          <AssociationSet Name="FK__carrito__user_id__52593CB8" Association="Self.FK__carrito__user_id__52593CB8">
             <End Role="users" EntitySet="users" />
             <End Role="carrito" EntitySet="carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__users__role_id__3B75D760" Association="Self.FK__users__role_id__3B75D760">
+          <AssociationSet Name="FK__users__role_id__4D94879B" Association="Self.FK__users__role_id__4D94879B">
             <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
-          <FunctionImport Name="ConsultarCitaSP" ReturnType="Collection(salonbellezaMNModel.ConsultarCitaSP_Result)" />
+          <FunctionImport Name="ConsultarCitaSP" ReturnType="Collection(salonModel.ConsultarCitaSP_Result)" />
+          <FunctionImport Name="IniciarSesionSP" ReturnType="Collection(salonModel.IniciarSesionSP_Result)">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RecuperarCuentaSP" ReturnType="Collection(salonModel.RecuperarCuentaSP_Result)">
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="RegistrarCitaSP">
             <Parameter Name="estilista" Mode="In" Type="String" />
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
@@ -243,24 +265,42 @@
             <Parameter Name="servicio" Mode="In" Type="String" />
             <Parameter Name="descripcion_servicio" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="RegistrarCuentaSP">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="role_id" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ConsultarCitaSP_Result">
           <Property Type="Int32" Name="id_cita" Nullable="false" />
           <Property Type="String" Name="estilista" Nullable="false" MaxLength="100" />
-          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="fecha" Nullable="false" />
           <Property Type="String" Name="sede" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="nombre_cliente" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="servicio" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="descripcion_servicio" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="IniciarSesionSP_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="100" />
+          <Property Type="Int64" Name="role_id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="RecuperarCuentaSP_Result">
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="salonbellezaMNModelStoreContainer" CdmEntityContainer="salonbellezaMNEntities1">
+        <EntityContainerMapping StorageEntityContainer="salonModelStoreContainer" CdmEntityContainer="salonbellezaMNEntities1">
           <EntitySetMapping Name="carrito">
-            <EntityTypeMapping TypeName="salonbellezaMNModel.carrito">
+            <EntityTypeMapping TypeName="salonModel.carrito">
               <MappingFragment StoreEntitySet="carrito">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -272,11 +312,12 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="citas">
-            <EntityTypeMapping TypeName="salonbellezaMNModel.citas">
+            <EntityTypeMapping TypeName="salonModel.citas">
               <MappingFragment StoreEntitySet="citas">
                 <ScalarProperty Name="id_cita" ColumnName="id_cita" />
                 <ScalarProperty Name="estilista" ColumnName="estilista" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
                 <ScalarProperty Name="sede" ColumnName="sede" />
                 <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
                 <ScalarProperty Name="servicio" ColumnName="servicio" />
@@ -285,7 +326,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="productos">
-            <EntityTypeMapping TypeName="salonbellezaMNModel.productos">
+            <EntityTypeMapping TypeName="salonModel.productos">
               <MappingFragment StoreEntitySet="productos">
                 <ScalarProperty Name="id_producto" ColumnName="id_producto" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -296,27 +337,27 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="roles">
-            <EntityTypeMapping TypeName="salonbellezaMNModel.roles">
+            <EntityTypeMapping TypeName="salonModel.roles">
               <MappingFragment StoreEntitySet="roles">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="salonbellezaMNModel.users">
+            <EntityTypeMapping TypeName="salonModel.users">
               <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nombrecompleto" ColumnName="nombrecompleto" />
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="role_id" ColumnName="role_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="ConsultarCitaSP" FunctionName="salonbellezaMNModel.Store.ConsultarCitaSP">
+          <FunctionImportMapping FunctionImportName="ConsultarCitaSP" FunctionName="salonModel.Store.ConsultarCitaSP">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="salonbellezaMNModel.ConsultarCitaSP_Result">
+              <ComplexTypeMapping TypeName="salonModel.ConsultarCitaSP_Result">
                 <ScalarProperty Name="id_cita" ColumnName="id_cita" />
                 <ScalarProperty Name="estilista" ColumnName="estilista" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -327,7 +368,28 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RegistrarCitaSP" FunctionName="salonbellezaMNModel.Store.RegistrarCitaSP" />
+          <FunctionImportMapping FunctionImportName="IniciarSesionSP" FunctionName="salonModel.Store.IniciarSesionSP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="salonModel.IniciarSesionSP_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RecuperarCuentaSP" FunctionName="salonModel.Store.RecuperarCuentaSP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="salonModel.RecuperarCuentaSP_Result">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RegistrarCitaSP" FunctionName="salonModel.Store.RegistrarCitaSP" />
+          <FunctionImportMapping FunctionImportName="RegistrarCuentaSP" FunctionName="salonModel.Store.RegistrarCuentaSP" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -345,7 +407,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

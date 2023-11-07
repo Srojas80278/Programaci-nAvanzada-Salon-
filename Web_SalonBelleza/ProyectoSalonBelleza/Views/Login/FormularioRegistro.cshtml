@@ -1,6 +1,7 @@
-﻿
+﻿@model ProyectoSalonBelleza.Entities.UserEnt
+
 @{
-    ViewBag.Title = "FormularioLogin";
+    ViewBag.Title = "RegistrarCuenta";
     Layout = "~/Views/Shared/Layout2.cshtml";
 }
 <head>
@@ -23,36 +24,44 @@
             <div class="container">
                 <div class="signup-content">
                     <div class="signup-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <form method="POST" class="register-form" id="register-form">
+                        <h2 class="form-title">Iniciar Sesión</h2>
+
+                        @using (Html.BeginForm("RegistrarCuenta", "Login", FormMethod.Post, new { @class = "register-form", id = "register-form" }))
+                        {
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" />
+                                @Html.TextBoxFor(model => model.name, new { @id = "name", @placeholder = "Nombre Completo" })
                             </div>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="Your Email" />
+                                @Html.TextBoxFor(model => model.email, new { @id = "email", @placeholder = "Correo Electrónico", @type = "email" })
                             </div>
                             <div class="form-group">
                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password" />
+                                @Html.PasswordFor(model => model.password, new { @id = "password", @placeholder = "Contraseña" })
                             </div>
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" />
+                                @Html.Password("re_pass", null, new { @id = "re_pass", @placeholder = "Repetir contraseña" })
                             </div>
                             <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                            </div>
+                                @Html.CheckBox("agree-term", new { @id = "agree-term", @class = "agree-term" })
+                                <label for="agree-term" class="label-agree-term">
+                                    <span><span></span></span>
+                                    Acepto todas las declaraciones en
+                                    <a href="#" class="term-service">Términos de servicio</a>
+                                </label>
+                            </div>*@
                             <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register" />
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Registrar" />
                             </div>
-                        </form>
+                        }
+
+
                     </div>
                     <div class="signup-image">
                         <figure><img src="~/templates/Login/images/signup-image.jpg" alt="sing up image"></figure>
-                        <a style="color: aqua"> @Html.ActionLink("I am already member", "FormularioLogin", "Home", new { area = "" }, new { @class = "nav-link" })</a>
+                        <a style="color: aqua"> @Html.ActionLink("Ya tengo una cuenta", "FormularioLogin", "Login", new { area = "" }, new { @class = "nav-link" })</a>
                     </div>
                 </div>
             </div>
