@@ -11,14 +11,14 @@ namespace ApiSalonBelleza.Models
 {
     using System;
     
-    public partial class ConsultarCitaSP_Result
+    public partial class ConsultarProductoSP_Result
     {
-        public int id_cita { get; set; }
-        public string estilista { get; set; }
-        public System.DateTime fecha { get; set; }
-        public string sede { get; set; }
-        public string nombre_cliente { get; set; }
-        public string servicio { get; set; }
-        public string descripcion_servicio { get; set; }
+        public long ConProducto { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public int Cantidad { get; set; }
+        public decimal Precio { get; set; }
+        public string Imagen { get; set; }
+        public bool Estado { get; set; }
     }
 }

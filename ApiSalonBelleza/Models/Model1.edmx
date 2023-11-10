@@ -4,123 +4,35 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="salonbellezaMNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="carrito">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="id_producto" Type="int" Nullable="false" />
-          <Property Name="cantidad" Type="int" Nullable="false" />
-          <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="subtotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-        </EntityType>
-        <EntityType Name="citas">
-          <Key>
-            <PropertyRef Name="id_cita" />
-          </Key>
-          <Property Name="id_cita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="estilista" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
-          <Property Name="sede" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="nombre_cliente" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="servicio" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="descripcion_servicio" Type="varchar" MaxLength="200" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="salonbellezaMNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="productos">
           <Key>
-            <PropertyRef Name="id_producto" />
+            <PropertyRef Name="ConProducto" />
           </Key>
-          <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="img" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ConProducto" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="250" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="roles">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombrecompleto" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="role_id" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK__carrito__id_prod__412EB0B6">
-          <End Role="productos" Type="Self.productos" Multiplicity="1" />
-          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="productos">
-              <PropertyRef Name="id_producto" />
-            </Principal>
-            <Dependent Role="carrito">
-              <PropertyRef Name="id_producto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__carrito__user_id__403A8C7D">
-          <End Role="users" Type="Self.users" Multiplicity="1" />
-          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="carrito">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__users__role_id__3B75D760">
-          <End Role="roles" Type="Self.roles" Multiplicity="1" />
-          <End Role="users" Type="Self.users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="roles">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="role_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Function Name="ConsultarCitaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="RegistrarCitaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="estilista" Type="varchar" Mode="In" />
-          <Parameter Name="fecha" Type="datetime" Mode="In" />
-          <Parameter Name="sede" Type="varchar" Mode="In" />
-          <Parameter Name="nombre_cliente" Type="varchar" Mode="In" />
-          <Parameter Name="servicio" Type="varchar" Mode="In" />
-          <Parameter Name="descripcion_servicio" Type="varchar" Mode="In" />
+        <Function Name="ConsultarProductoSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="EliminarProductoSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConProducto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RegistrarProductoSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Cantidad" Type="int" Mode="In" />
+          <Parameter Name="Precio" Type="decimal" Mode="In" />
+          <Parameter Name="Imagen" Type="varchar" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
         </Function>
         <EntityContainer Name="salonbellezaMNModelStoreContainer">
-          <EntitySet Name="carrito" EntityType="Self.carrito" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="citas" EntityType="Self.citas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__carrito__id_prod__412EB0B6" Association="Self.FK__carrito__id_prod__412EB0B6">
-            <End Role="productos" EntitySet="productos" />
-            <End Role="carrito" EntitySet="carrito" />
-          </AssociationSet>
-          <AssociationSet Name="FK__carrito__user_id__403A8C7D" Association="Self.FK__carrito__user_id__403A8C7D">
-            <End Role="users" EntitySet="users" />
-            <End Role="carrito" EntitySet="carrito" />
-          </AssociationSet>
-          <AssociationSet Name="FK__users__role_id__3B75D760" Association="Self.FK__users__role_id__3B75D760">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="salonbellezaMNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -134,7 +46,6 @@
           <Property Name="cantidad" Type="Int32" Nullable="false" />
           <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="subtotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="productos" Relationship="Self.FK__carrito__id_prod__412EB0B6" FromRole="carrito" ToRole="productos" />
           <NavigationProperty Name="users" Relationship="Self.FK__carrito__user_id__403A8C7D" FromRole="carrito" ToRole="users" />
         </EntityType>
         <EntityType Name="citas">
@@ -148,17 +59,6 @@
           <Property Name="nombre_cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="servicio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion_servicio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="productos">
-          <Key>
-            <PropertyRef Name="id_producto" />
-          </Key>
-          <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="img" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="carrito" Relationship="Self.FK__carrito__id_prod__412EB0B6" FromRole="productos" ToRole="carrito" />
         </EntityType>
         <EntityType Name="roles">
           <Key>
@@ -180,18 +80,6 @@
           <NavigationProperty Name="carrito" Relationship="Self.FK__carrito__user_id__403A8C7D" FromRole="users" ToRole="carrito" />
           <NavigationProperty Name="roles" Relationship="Self.FK__users__role_id__3B75D760" FromRole="users" ToRole="roles" />
         </EntityType>
-        <Association Name="FK__carrito__id_prod__412EB0B6">
-          <End Role="productos" Type="Self.productos" Multiplicity="1" />
-          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="productos">
-              <PropertyRef Name="id_producto" />
-            </Principal>
-            <Dependent Role="carrito">
-              <PropertyRef Name="id_producto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__carrito__user_id__403A8C7D">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
@@ -219,13 +107,8 @@
         <EntityContainer Name="salonbellezaMNEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="carrito" EntityType="Self.carrito" />
           <EntitySet Name="citas" EntityType="Self.citas" />
-          <EntitySet Name="productos" EntityType="Self.productos" />
           <EntitySet Name="roles" EntityType="Self.roles" />
           <EntitySet Name="users" EntityType="Self.users" />
-          <AssociationSet Name="FK__carrito__id_prod__412EB0B6" Association="Self.FK__carrito__id_prod__412EB0B6">
-            <End Role="productos" EntitySet="productos" />
-            <End Role="carrito" EntitySet="carrito" />
-          </AssociationSet>
           <AssociationSet Name="FK__carrito__user_id__403A8C7D" Association="Self.FK__carrito__user_id__403A8C7D">
             <End Role="users" EntitySet="users" />
             <End Role="carrito" EntitySet="carrito" />
@@ -243,6 +126,19 @@
             <Parameter Name="servicio" Mode="In" Type="String" />
             <Parameter Name="descripcion_servicio" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="productos" EntityType="salonbellezaMNModel.productos" />
+          <FunctionImport Name="RegistrarProductoSP">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="Imagen" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarProductoSP" ReturnType="Collection(salonbellezaMNModel.ConsultarProductoSP_Result)" />
+          <FunctionImport Name="EliminarProductoSP">
+            <Parameter Name="ConProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ConsultarCitaSP_Result">
           <Property Type="Int32" Name="id_cita" Nullable="false" />
@@ -253,81 +149,61 @@
           <Property Type="String" Name="servicio" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="descripcion_servicio" Nullable="false" MaxLength="200" />
         </ComplexType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="ConProducto" />
+          </Key>
+          <Property Name="ConProducto" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="ConsultarProductoSP_Result">
+          <Property Type="Int64" Name="ConProducto" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Imagen" Nullable="true" MaxLength="250" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="salonbellezaMNModelStoreContainer" CdmEntityContainer="salonbellezaMNEntities1">
-          <EntitySetMapping Name="carrito">
-            <EntityTypeMapping TypeName="salonbellezaMNModel.carrito">
-              <MappingFragment StoreEntitySet="carrito">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="citas">
-            <EntityTypeMapping TypeName="salonbellezaMNModel.citas">
-              <MappingFragment StoreEntitySet="citas">
-                <ScalarProperty Name="id_cita" ColumnName="id_cita" />
-                <ScalarProperty Name="estilista" ColumnName="estilista" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="sede" ColumnName="sede" />
-                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
-                <ScalarProperty Name="servicio" ColumnName="servicio" />
-                <ScalarProperty Name="descripcion_servicio" ColumnName="descripcion_servicio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="productos">
             <EntityTypeMapping TypeName="salonbellezaMNModel.productos">
               <MappingFragment StoreEntitySet="productos">
-                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="img" ColumnName="img" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ConProducto" ColumnName="ConProducto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="roles">
-            <EntityTypeMapping TypeName="salonbellezaMNModel.roles">
-              <MappingFragment StoreEntitySet="roles">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="salonbellezaMNModel.users">
-              <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nombrecompleto" ColumnName="nombrecompleto" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="role_id" ColumnName="role_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="ConsultarCitaSP" FunctionName="salonbellezaMNModel.Store.ConsultarCitaSP">
+          <FunctionImportMapping FunctionImportName="RegistrarProductoSP" FunctionName="salonbellezaMNModel.Store.RegistrarProductoSP" />
+          <FunctionImportMapping FunctionImportName="ConsultarProductoSP" FunctionName="salonbellezaMNModel.Store.ConsultarProductoSP">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="salonbellezaMNModel.ConsultarCitaSP_Result">
-                <ScalarProperty Name="id_cita" ColumnName="id_cita" />
-                <ScalarProperty Name="estilista" ColumnName="estilista" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="sede" ColumnName="sede" />
-                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
-                <ScalarProperty Name="servicio" ColumnName="servicio" />
-                <ScalarProperty Name="descripcion_servicio" ColumnName="descripcion_servicio" />
+              <ComplexTypeMapping TypeName="salonbellezaMNModel.ConsultarProductoSP_Result">
+                <ScalarProperty Name="ConProducto" ColumnName="ConProducto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RegistrarCitaSP" FunctionName="salonbellezaMNModel.Store.RegistrarCitaSP" />
+          <FunctionImportMapping FunctionImportName="EliminarProductoSP" FunctionName="salonbellezaMNModel.Store.EliminarProductoSP" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
