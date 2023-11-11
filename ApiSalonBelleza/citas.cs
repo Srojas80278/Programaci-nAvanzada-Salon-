@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ApiSalonBelleza.Models
+namespace ApiSalonBelleza
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class carrito
+    public partial class citas
     {
-        public int id { get; set; }
-        public int user_id { get; set; }
-        public int id_producto { get; set; }
-        public int cantidad { get; set; }
-        public decimal precio { get; set; }
-        public decimal subtotal { get; set; }
-    
-        public virtual users users { get; set; }
+        public int id_cita { get; set; }
+        public string estilista { get; set; }
+        public System.DateTime fecha { get; set; }
+        public System.TimeSpan hora { get; set; }
+        public string sede { get; set; }
+        public string nombre_cliente { get; set; }
+        public string servicio { get; set; }
+        public string descripcion_servicio { get; set; }
     }
 }

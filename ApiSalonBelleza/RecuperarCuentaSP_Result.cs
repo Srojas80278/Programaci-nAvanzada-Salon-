@@ -7,18 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ApiSalonBelleza.Models
+namespace ApiSalonBelleza
 {
     using System;
     
-    public partial class ConsultarCitaSP_Result
+    public partial class RecuperarCuentaSP_Result
     {
-        public int id_cita { get; set; }
-        public string estilista { get; set; }
-        public System.DateTime fecha { get; set; }
-        public string sede { get; set; }
-        public string nombre_cliente { get; set; }
-        public string servicio { get; set; }
-        public string descripcion_servicio { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
     }
 }

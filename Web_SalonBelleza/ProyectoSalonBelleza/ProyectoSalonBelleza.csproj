@@ -48,6 +48,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -143,24 +146,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CitasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+<<<<<<< HEAD
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Entidades\CitaEntidad.cs" />
+    <Compile Include="Entities\UserEnt.cs" />
+=======
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Entidades\CitaEntidad.cs" />
     <Compile Include="Entidades\ProductoEnt.cs" />
+>>>>>>> main
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Modelos\CitasModelo.cs" />
+<<<<<<< HEAD
+    <Compile Include="Models\UserModel.cs" />
+=======
     <Compile Include="Modelos\ProductoModelo.cs" />
+>>>>>>> main
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,7 +271,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Login\FormularioLogin.cshtml" />
     <Content Include="templates\Login\.sass-cache\21880c0ffe15753a53f8402e9f64e1077e071510\style.scssc" />
     <Content Include="templates\Login\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\extend.scssc" />
     <Content Include="templates\Login\.sass-cache\2866be86c578bb583fbf023501bb9fd24cc3bf22\fonts.scssc" />
@@ -358,16 +365,20 @@
     <Content Include="templates\Login\scss\layouts\responsive.scss" />
     <Content Include="templates\Login\scss\style.scss" />
     <Content Include="Views\Shared\Layout2.cshtml" />
-    <Content Include="Views\Login\FormularioRegistro.cshtml" />
     <Content Include="Views\Citas\RegistrarCita.cshtml" />
     <Content Include="Views\Citas\ConsultarCitas.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Login\FormularioLogin.cshtml" />
+    <Content Include="Views\Login\FormularioRecuperar.cshtml" />
+    <Content Include="Views\Login\FormularioRegistro.cshtml" />
+=======
     <Content Include="Views\Producto\RegistrarProducto.cshtml" />
     <Content Include="Views\Producto\ConsultarProducto.cshtml" />
     <Content Include="Views\Producto\EliminarProducto.cshtml" />
+>>>>>>> main
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -426,7 +437,7 @@
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>

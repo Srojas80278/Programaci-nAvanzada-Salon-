@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ApiSalonBelleza.Models
+namespace ApiSalonBelleza
 {
     using System;
     using System.Data.Entity;
@@ -71,6 +71,28 @@ namespace ApiSalonBelleza.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarCitaSP_Result>("ConsultarCitaSP");
         }
     
+        public virtual ObjectResult<IniciarSesionSP_Result> IniciarSesionSP(string email, string password)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IniciarSesionSP_Result>("IniciarSesionSP", emailParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<RecuperarCuentaSP_Result> RecuperarCuentaSP(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RecuperarCuentaSP_Result>("RecuperarCuentaSP", emailParameter);
+        }
+    
         public virtual int RegistrarCitaSP(string estilista, Nullable<System.DateTime> fecha, string sede, string nombre_cliente, string servicio, string descripcion_servicio)
         {
             var estilistaParameter = estilista != null ?
@@ -100,6 +122,27 @@ namespace ApiSalonBelleza.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCitaSP", estilistaParameter, fechaParameter, sedeParameter, nombre_clienteParameter, servicioParameter, descripcion_servicioParameter);
         }
     
+<<<<<<< HEAD:ApiSalonBelleza/Model1.Context.cs
+        public virtual int RegistrarCuentaSP(string name, string email, string password, Nullable<long> role_id)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var role_idParameter = role_id.HasValue ?
+                new ObjectParameter("role_id", role_id) :
+                new ObjectParameter("role_id", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCuentaSP", nameParameter, emailParameter, passwordParameter, role_idParameter);
+=======
         public virtual int RegistrarProductoSP(string nombre, string descripcion, Nullable<int> cantidad, Nullable<decimal> precio, string imagen, Nullable<bool> estado)
         {
             var nombreParameter = nombre != null ?
@@ -141,6 +184,7 @@ namespace ApiSalonBelleza.Models
                 new ObjectParameter("ConProducto", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarProductoSP", conProductoParameter);
+>>>>>>> main:ApiSalonBelleza/Models/Model1.Context.cs
         }
     }
 }

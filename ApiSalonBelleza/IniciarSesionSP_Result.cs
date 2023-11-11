@@ -7,19 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ApiSalonBelleza.Models
+namespace ApiSalonBelleza
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class productos
+    public partial class IniciarSesionSP_Result
     {
-        public long ConProducto { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public int Cantidad { get; set; }
-        public decimal Precio { get; set; }
-        public string Imagen { get; set; }
-        public bool Estado { get; set; }
+        public long id { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public long role_id { get; set; }
     }
 }

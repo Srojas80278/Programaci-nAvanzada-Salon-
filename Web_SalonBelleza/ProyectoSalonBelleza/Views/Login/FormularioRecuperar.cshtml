@@ -22,34 +22,44 @@
         <!-- Sing in  Form -->
         <section class="sign-in">
             <div class="container">
+                @if (ViewBag.MensajeUsuario != null)
+                {
+                    <div class="alert alert-danger text-center mt-2" role="alert">
+                        @ViewBag.MensajeUsuario
+                    </div>
+                }
+
                 <div class="signin-content">
                     <div class="signin-image">
                         <figure><img src="~/templates/Login/images/signin-image.jpg" alt="sing up image"></figure>
+                        <a>@Html.ActionLink("Iniciar Sesión", "FormularioLogin", "Login", new { area = "" }, new { @class = "nav-link" })</a>
                         <a>@Html.ActionLink("Crear una cuenta", "FormularioRegistro", "Login", new { area = "" }, new { @class = "nav-link" })</a>
                     </div>
 
                     <div class="signin-form">
-                        <h2 class="form-title">Iniciar Sesión</h2>
-                        @using (Html.BeginForm("IniciarSesion", "Login", FormMethod.Post, new { @class = "register-form", id = "login-form" }))
+                        <h2 class="form-title">Recuperar cuenta</h2>
+                        <p class="social-label">Recupera tu contraseña con tu correo electrónico</p>
+                        <br>
+                        <br>
+                        @using (Html.BeginForm("RecuperarCuenta", "Login", FormMethod.Post, new { @class = "register-form", id = "login-form" }))
                         {
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                @Html.TextBox("email", null, new { @id = "email", @placeholder = "Correo Electrónico" })
-                            </div>
-                            <div class="form-group">
-                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                @Html.Password("password", null, new { @id = "password", @placeholder = "Contraseña" })
+                                @*@Html.TextBox("email", null, new { @id = "email", @placeholder = "Correo Electrónico" })*@
+                                @Html.TextBoxFor(m => m.email, new { @class = "form-control form-control-lg", @placeholder = "Correo Electrónico", @type = "email" })
                             </div>
                             @*<div class="form-group">
-                @Html.CheckBox("remember-me", new { @id = "remember-me", @class = "agree-term" })
-                <label for="remember-me" class="label-agree-term"><span><span></span></span>Mantener sesión iniciada</label>
-            </div>*@
+                        <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                        @Html.Password("password", null, new { @id = "password", @placeholder = "Contraseña" })
+                    </div>*@
+                            @*<div class="form-group">
+                        @Html.CheckBox("remember-me", new { @id = "remember-me", @class = "agree-term" })
+                        <label for="remember-me" class="label-agree-term"><span><span></span></span>Mantener sesión iniciada</label>
+                    </div>*@
                             <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Iniciar Sesión" />
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Recuperar Cuenta" />
                             </div>
                         }
-
-                        <a class="">@Html.ActionLink("Recuperar cuenta", "FormularioRecuperar", "Login", new { area = "" }, new { @class = "nav-link" })</a>
 
                         <div class="social-login">
                             <span class="social-label">Siguenos en</span>
