@@ -26,8 +26,6 @@ namespace ProyectoSalonBelleza.Modelos
                 return res.Content.ReadFromJsonAsync<string>().Result;
             }
         }
-
-
         public List<CitaEntidad> ConsultarCitas()
         {
             using (var client = new HttpClient())
@@ -39,7 +37,16 @@ namespace ProyectoSalonBelleza.Modelos
         }
 
 
-
+        public string ActualizarCita(CitaEntidad entidad) //Cambiamos Nombre
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "ActualizarCita";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PutAsync(urlApi, jsonData).Result;    //Cambiamos el "Put"
+                return res.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
 
 
 
