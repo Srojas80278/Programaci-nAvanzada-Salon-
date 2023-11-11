@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ProyectoSalonBelleza.Entidades.ProductoEnt>
+
+@{
+    ViewBag.Title = "ConsultarProducto";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2>Consultar Producto</h2>
+
+        <p>
+            @Html.ActionLink("Registrar Nuevo Producto", "RegistrarProducto", null, new { @class = "btn btn-success" })
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ConProducto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cantidad)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Precio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Imagen)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Estado)
+                        </th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ConProducto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cantidad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Precio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Imagen)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Estado)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "EditarProducto", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-warning btn-sm" }) |
+                                @Html.ActionLink("Eliminar", "EliminarProducto", new { /* id=item.PrimaryKey */}, new { @class = "btn btn-danger btn-sm" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
