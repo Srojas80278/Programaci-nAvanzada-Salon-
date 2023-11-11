@@ -42,7 +42,20 @@ namespace ProyectoSalonBelleza.Controllers
 
 
 
-
-
+        //Actualizar Citas
+        [HttpPost] //Aqui no se cambia a PUT porque estamos trabajando en MCV y solo existen (Post y Get)
+        public ActionResult ActualizarCita(CitaEntidad entidad)
+        {
+            string respuesta = CitaModelo.ActualizarCita(entidad);
+            if (respuesta == "OK")
+            {
+                ViewBag.MensajeUsuario = "Registro Exitoso"; 
+                return RedirectToAction("ConsultarCitas", "Citas"); //"Accion", "Controller"
+            }
+            {
+                ViewBag.MensajeUsuario = "No se ha podido registrar su información";
+                return View();
+            }
+        }
     }
 }

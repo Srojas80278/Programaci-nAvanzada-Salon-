@@ -91,6 +91,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ActualizarCitaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="estilista" Type="varchar" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="sede" Type="varchar" Mode="In" />
+          <Parameter Name="nombre_cliente" Type="varchar" Mode="In" />
+          <Parameter Name="servicio" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion_servicio" Type="varchar" Mode="In" />
+          <Parameter Name="id_cita" Type="int" Mode="In" />
+        </Function>
         <Function Name="ConsultarCitaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="RegistrarCitaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="estilista" Type="varchar" Mode="In" />
@@ -216,7 +225,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="salonbellezaMNEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="salonbellezaMNEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="carrito" EntityType="Self.carrito" />
           <EntitySet Name="citas" EntityType="Self.citas" />
           <EntitySet Name="productos" EntityType="Self.productos" />
@@ -234,6 +243,15 @@
             <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
+          <FunctionImport Name="ActualizarCitaSP">
+            <Parameter Name="estilista" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="sede" Mode="In" Type="String" />
+            <Parameter Name="nombre_cliente" Mode="In" Type="String" />
+            <Parameter Name="servicio" Mode="In" Type="String" />
+            <Parameter Name="descripcion_servicio" Mode="In" Type="String" />
+            <Parameter Name="id_cita" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="ConsultarCitaSP" ReturnType="Collection(salonbellezaMNModel.ConsultarCitaSP_Result)" />
           <FunctionImport Name="RegistrarCitaSP">
             <Parameter Name="estilista" Mode="In" Type="String" />
@@ -258,7 +276,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="salonbellezaMNModelStoreContainer" CdmEntityContainer="salonbellezaMNEntities1">
+        <EntityContainerMapping StorageEntityContainer="salonbellezaMNModelStoreContainer" CdmEntityContainer="salonbellezaMNEntities">
           <EntitySetMapping Name="carrito">
             <EntityTypeMapping TypeName="salonbellezaMNModel.carrito">
               <MappingFragment StoreEntitySet="carrito">
@@ -314,6 +332,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ActualizarCitaSP" FunctionName="salonbellezaMNModel.Store.ActualizarCitaSP" />
           <FunctionImportMapping FunctionImportName="ConsultarCitaSP" FunctionName="salonbellezaMNModel.Store.ConsultarCitaSP">
             <ResultMapping>
               <ComplexTypeMapping TypeName="salonbellezaMNModel.ConsultarCitaSP_Result">
