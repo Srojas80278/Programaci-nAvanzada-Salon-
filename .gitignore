@@ -3,6 +3,35 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# ApiSalonBelleza
+ApiSalonBelleza/ApiSalonBelleza.csproj
+
+ApiSalonBelleza/Models/ConsultarCitaSP_Result.cs
+ApiSalonBelleza/Models/Model1.Context.cs
+ApiSalonBelleza/Models/Model1.Designer.cs
+ApiSalonBelleza/Models/Model1.cs
+ApiSalonBelleza/Models/Model1.edmx
+ApiSalonBelleza/Models/Model1.edmx.diagram
+ApiSalonBelleza/Models/carrito.cs
+ApiSalonBelleza/Models/citas.cs
+ApiSalonBelleza/Models/productos.cs
+ApiSalonBelleza/Models/roles.cs
+ApiSalonBelleza/Models/users.cs
+
+ApiSalonBelleza/ConsultarCitaSP_Result.cs
+ApiSalonBelleza/Model1.Context.cs
+ApiSalonBelleza/Model1.Designer.cs
+ApiSalonBelleza/Model1.cs
+ApiSalonBelleza/Model1.edmx
+ApiSalonBelleza/Model1.edmx.diagram
+ApiSalonBelleza/carrito.cs
+ApiSalonBelleza/citas.cs
+ApiSalonBelleza/productos.cs
+ApiSalonBelleza/roles.cs
+ApiSalonBelleza/users.cs
+
+Web_SalonBelleza/ProyectoSalonBelleza/ProyectoSalonBelleza.csproj
+
 # User-specific files
 *.rsuser
 *.suo
