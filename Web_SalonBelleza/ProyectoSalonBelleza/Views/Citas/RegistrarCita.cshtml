@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <h2>Registrar Cita</h2>
-        @using (Html.BeginForm("RegistrarCita", "Citas", FormMethod.Post, new { @class = "form-horizontal" }))
+        @using (Html.BeginForm("RegistrarCita", "Citas", FormMethod.Post, new { @class = "form-horizontal", id = "citaForm" }))
         {
             @Html.AntiForgeryToken()
 
@@ -22,7 +22,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.estilista, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.estilista, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.estilista, new { htmlAttributes = new { @class = "form-control", id = "estilista" } })
                     @Html.ValidationMessageFor(model => model.estilista, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -30,15 +30,13 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.sede, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.sede, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.sede, new { htmlAttributes = new { @class = "form-control", id = "sede" } })
                     @Html.ValidationMessageFor(model => model.sede, "", new { @class = "text-danger" })
                 </div>
-            </div>
-
-            <div class="form-group">
+            </div> <div class="form-group">
                 @Html.LabelFor(model => model.nombre_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.nombre_cliente, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.nombre_cliente, new { htmlAttributes = new { @class = "form-control", id = "nombre_cliente" } })
                     @Html.ValidationMessageFor(model => model.nombre_cliente, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -46,7 +44,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.servicio, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.servicio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.servicio, new { htmlAttributes = new { @class = "form-control", id = "servicio" } })
                     @Html.ValidationMessageFor(model => model.servicio, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -54,18 +52,59 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.descripcion_servicio, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.descripcion_servicio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.descripcion_servicio, new { htmlAttributes = new { @class = "form-control", id = "descripcion_servicio" } })
                     @Html.ValidationMessageFor(model => model.descripcion_servicio, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <button type="button" class="btn btn-primary" onclick="registrarCita()">Crear</button>
                 </div>
             </div>
         }
+
+        <!-- Modal de éxito -->
+        <div class="modal fade" id="modalExito" tabindex="-1" role="dialog" aria-labelledby="modalExitoLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalExitoLabel">¡Registro Exitoso!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Registro exitoso. Mensaje de validación aquí.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function registrarCita() {
+            // Envía el formulario utilizando JavaScript
+            document.getElementById('citaForm').submit();
+
+            // Limpia las cajas de registro después de enviar el formulario
+            document.getElementById('estilista').value = '';
+            document.getElementById('sede').value = '';
+            document.getElementById('nombre_cliente').value = '';
+            document.getElementById('servicio').value = '';
+            document.getElementById('descripcion_servicio').value = '';
+            $('#modalExito').modal('show');
+        }
+    </script>
+
+
+
+    <!-- Tus scripts y librerías -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>

@@ -21,7 +21,6 @@ namespace ApiSalonBelleza
         public decimal precio { get; set; }
         public decimal subtotal { get; set; }
     
-        public virtual productos productos { get; set; }
         public virtual users users { get; set; }
     }
 }

@@ -151,14 +151,24 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CitasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Entidades\CitaEntidad.cs" />
     <Compile Include="Entities\UserEnt.cs" />
+=======
+    <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Entidades\CitaEntidad.cs" />
+    <Compile Include="Entidades\ProductoEnt.cs" />
+>>>>>>> main
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Modelos\CitasModelo.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\UserModel.cs" />
+=======
+    <Compile Include="Modelos\ProductoModelo.cs" />
+>>>>>>> main
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -357,9 +367,15 @@
     <Content Include="Views\Shared\Layout2.cshtml" />
     <Content Include="Views\Citas\RegistrarCita.cshtml" />
     <Content Include="Views\Citas\ConsultarCitas.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Login\FormularioLogin.cshtml" />
     <Content Include="Views\Login\FormularioRecuperar.cshtml" />
     <Content Include="Views\Login\FormularioRegistro.cshtml" />
+=======
+    <Content Include="Views\Producto\RegistrarProducto.cshtml" />
+    <Content Include="Views\Producto\ConsultarProducto.cshtml" />
+    <Content Include="Views\Producto\EliminarProducto.cshtml" />
+>>>>>>> main
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

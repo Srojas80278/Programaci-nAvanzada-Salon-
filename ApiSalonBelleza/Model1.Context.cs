@@ -15,10 +15,10 @@ namespace ApiSalonBelleza
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class salonbellezaMNEntities1 : DbContext
+    public partial class salonbellezaMNEntities : DbContext
     {
-        public salonbellezaMNEntities1()
-            : base("name=salonbellezaMNEntities1")
+        public salonbellezaMNEntities()
+            : base("name=salonbellezaMNEntities")
         {
         }
     
@@ -29,9 +29,42 @@ namespace ApiSalonBelleza
     
         public virtual DbSet<carrito> carrito { get; set; }
         public virtual DbSet<citas> citas { get; set; }
-        public virtual DbSet<productos> productos { get; set; }
         public virtual DbSet<roles> roles { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<productos> productos { get; set; }
+    
+        public virtual int ActualizarCitaSP(string estilista, Nullable<System.DateTime> fecha, string sede, string nombre_cliente, string servicio, string descripcion_servicio, Nullable<int> id_cita)
+        {
+            var estilistaParameter = estilista != null ?
+                new ObjectParameter("estilista", estilista) :
+                new ObjectParameter("estilista", typeof(string));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            var sedeParameter = sede != null ?
+                new ObjectParameter("sede", sede) :
+                new ObjectParameter("sede", typeof(string));
+    
+            var nombre_clienteParameter = nombre_cliente != null ?
+                new ObjectParameter("nombre_cliente", nombre_cliente) :
+                new ObjectParameter("nombre_cliente", typeof(string));
+    
+            var servicioParameter = servicio != null ?
+                new ObjectParameter("servicio", servicio) :
+                new ObjectParameter("servicio", typeof(string));
+    
+            var descripcion_servicioParameter = descripcion_servicio != null ?
+                new ObjectParameter("descripcion_servicio", descripcion_servicio) :
+                new ObjectParameter("descripcion_servicio", typeof(string));
+    
+            var id_citaParameter = id_cita.HasValue ?
+                new ObjectParameter("id_cita", id_cita) :
+                new ObjectParameter("id_cita", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarCitaSP", estilistaParameter, fechaParameter, sedeParameter, nombre_clienteParameter, servicioParameter, descripcion_servicioParameter, id_citaParameter);
+        }
     
         public virtual ObjectResult<ConsultarCitaSP_Result> ConsultarCitaSP()
         {
@@ -89,6 +122,7 @@ namespace ApiSalonBelleza
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCitaSP", estilistaParameter, fechaParameter, sedeParameter, nombre_clienteParameter, servicioParameter, descripcion_servicioParameter);
         }
     
+<<<<<<< HEAD:ApiSalonBelleza/Model1.Context.cs
         public virtual int RegistrarCuentaSP(string name, string email, string password, Nullable<long> role_id)
         {
             var nameParameter = name != null ?
@@ -108,6 +142,49 @@ namespace ApiSalonBelleza
                 new ObjectParameter("role_id", typeof(long));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCuentaSP", nameParameter, emailParameter, passwordParameter, role_idParameter);
+=======
+        public virtual int RegistrarProductoSP(string nombre, string descripcion, Nullable<int> cantidad, Nullable<decimal> precio, string imagen, Nullable<bool> estado)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("Imagen", imagen) :
+                new ObjectParameter("Imagen", typeof(string));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarProductoSP", nombreParameter, descripcionParameter, cantidadParameter, precioParameter, imagenParameter, estadoParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarProductoSP_Result> ConsultarProductoSP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarProductoSP_Result>("ConsultarProductoSP");
+        }
+    
+        public virtual int EliminarProductoSP(Nullable<int> conProducto)
+        {
+            var conProductoParameter = conProducto.HasValue ?
+                new ObjectParameter("ConProducto", conProducto) :
+                new ObjectParameter("ConProducto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarProductoSP", conProductoParameter);
+>>>>>>> main:ApiSalonBelleza/Models/Model1.Context.cs
         }
     }
 }

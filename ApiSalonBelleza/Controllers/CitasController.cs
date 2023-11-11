@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Timers;
 using System.Web.Http;
 
 namespace ApiSalonBelleza.Controllers
@@ -16,7 +17,7 @@ namespace ApiSalonBelleza.Controllers
         public String RegistrarCita(Cita q)
         {
 
-            using (var context = new salonbellezaMNEntities1())
+            using (var context = new salonbellezaMNEntities())
             {
                 context.RegistrarCitaSP(q.estilista, q.fecha = DateTime.Now,
                 q.sede, q.nombre_cliente, q.servicio, q.descripcion_servicio);
@@ -29,15 +30,34 @@ namespace ApiSalonBelleza.Controllers
         [Route("ConsultarCitas")]
         public List<ConsultarCitaSP_Result> ConsultarCitas() //Retornamos el resultado de el SP.
         {
-            using (var contexto = new salonbellezaMNEntities1())
+            using (var contexto = new salonbellezaMNEntities())
             {
-                return contexto.ConsultarCitaSP().ToList(); 
+                return contexto.ConsultarCitaSP().ToList();
                 //To List permite devolver en una lista de objetos en formato JSON.
             }
         }
 
+        [HttpPut]
+        [Route("ActualizarCita")]
+        public String ActualizarCita(Cita q)
+        {
 
+            try
+            {
+                using (var context = new salonbellezaMNEntities())   //La fecha en el sistema es para ver cuando solicita la cita.
+                                                                     //Como M.N el salon debe comunicarle al cliente cuando lo puede atender.
+                {
+                    context.ActualizarCitaSP(q.estilista, q.fecha = DateTime.Now,
+                    q.sede, q.nombre_cliente, q.servicio, q.descripcion_servicio, q.id_cita);
 
+                    return "OK";
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
 
+            }
+        }
     }
 }
