@@ -33,12 +33,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-<<<<<<< HEAD
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portafolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Equipo</a></li>
+
+                    @if (Session["role"] != null && Convert.ToInt32(Session["role"]) == 1)
+                    {
+                        <li class="nav-item">@Html.ActionLink("Registrar Cita", "RegistrarCita", "Citas", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Consultar Cita", "ConsultarCitas", "Citas", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Productos", "ConsultarProducto", "Producto", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
 
                     @if (Session["name"] == null)
                     {
@@ -56,18 +60,6 @@
                             </ul>
                         </li>
                     }
-
-=======
-                    <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portafolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">Equipo</a></li>
-                    @*<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>*@
-                    <li class="nav-item">@Html.ActionLink("Registrar Cita", "RegistrarCita", "Citas", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Consultar Cita", "ConsultarCitas", "Citas", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Iniciar Sesion", "FormularioLogin", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Registrarse", "FormularioRegistro", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Productos", "ConsultarProducto", "Producto", new { area = "" }, new { @class = "nav-link" })</li>
->>>>>>> main
                 </ul>
             </div>
         </div>
@@ -266,7 +258,7 @@
                     <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="~/templates/assets/img/logos/logo1.png" alt="..." aria-label="Davinest Logo" style="width: 150px; height: auto;" /></a>
                 </div>
                 <div class="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="~/templates/assets/img/logos/logo2.png" alt="..." aria-label="Moroccanoil Logo" style="width: 150px; height: auto;"/></a>
+                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="~/templates/assets/img/logos/logo2.png" alt="..." aria-label="Moroccanoil Logo" style="width: 150px; height: auto;" /></a>
                 </div>
                 <div class="col-md-3 col-sm-6 my-3">
                     <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="~/templates/assets/img/logos/logo3.png" alt="..." aria-label="Insight Logo" style="width: 150px; height: auto;" /></a>
@@ -374,7 +366,7 @@
                                 <p class="item-intro text-muted">Todo tipo de cabello</p>
                                 <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/1.png" alt="..." />
                                 <p>En Utopia Beauty Salon, el lavado de cabello es una experiencia de lujo que te transportará a un oasis de relajación y rejuvenecimiento. Nuestros profesionales del cuidado capilar saben que un buen lavado es la base de un cabello saludable y radiante. Con productos de alta calidad y técnicas de masaje capilar, te proporcionamos una sensación de frescura y revitalización que te hará sentir como si estuvieras en un verdadero paraíso.</p>
-                                
+
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                     <i class="fas fa-xmark me-1"></i>
                                     Cerrar
@@ -400,7 +392,7 @@
                                 <p class="item-intro text-muted">Corte y delineado</p>
                                 <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/2.png" alt="..." />
                                 <p>En Utopia Beauty Salon, creemos que la barba es más que un simple accesorio facial; es una declaración de estilo y personalidad. Nuestros expertos barberos entienden la importancia de un corte de barba preciso y personalizado. Con destreza y atención al detalle, esculpimos y diseñamos tu barba de acuerdo a tus preferencias y rasgos individuales</p>
-                                
+
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                     <i class="fas fa-xmark me-1"></i>
                                     Cerrar
@@ -426,7 +418,7 @@
                                 <p class="item-intro text-muted">El estilo que tu quieras</p>
                                 <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/3.png" alt="..." />
                                 <p>En Utopia Beauty Salon, transformamos cabellos rebeldes en mares de suavidad y brillo. Nuestro servicio de alisado esculpe el cabello con precisión y lo deja radiante. Utilizamos las técnicas más avanzadas y productos de primera calidad para lograr resultados deslumbrantes. Ya sea que desees un cabello liso como la seda o simplemente reducir el frizz y los rizos, estamos aquí para ayudarte a alcanzar el look que deseas</p>
-                                
+
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                     <i class="fas fa-xmark me-1"></i>
                                     Cerrar
@@ -452,7 +444,7 @@
                                 <p class="item-intro text-muted">Todo tipo de corte</p>
                                 <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/4.png" alt="..." />
                                 <p>En Utopia Beauty Salon, los cortes de cabello para hombres son más que una simple rutina; son una expresión de estilo y confianza. Nuestros expertos estilistas para hombres comprenden la importancia de un corte de cabello impecable y personalizado. Con precisión y creatividad, esculpimos tu cabello para resaltar tus rasgos faciales y tu estilo individual. Ya sea que busques un corte clásico, moderno o audaz, estamos aquí para asegurarnos de que te sientas seguro y con una apariencia excepcional.</p>
-                                
+
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                     <i class="fas fa-xmark me-1"></i>
                                     Cerrar
@@ -478,7 +470,7 @@
                                 <p class="item-intro text-muted">Con productos de la mas alta calidad</p>
                                 <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/5.jpg" alt="..." />
                                 <p>En Utopia Beauty Salon, la limpieza facial es un ritual de rejuvenecimiento que restaura la luminosidad y la frescura de tu piel. Nuestros expertos en cuidado de la piel entienden la importancia de un cutis saludable y radiante. Utilizamos productos de alta calidad y técnicas especializadas para limpiar, exfoliar e hidratar tu piel, eliminando las impurezas y devolviendo la vitalidad. Ya sea que busques una piel más suave, una tez más uniforme o un refrescamiento completo, estamos aquí para ayudarte a lograr una piel envidiable</p>
-                                
+
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                     <i class="fas fa-xmark me-1"></i>
                                     Cerrar
@@ -502,7 +494,7 @@
                                 <p class="item-intro text-muted">El color/estilo que prefieras</p>
                                 <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/6.jpg" alt="..." />
                                 <p>En Utopia Beauty Salon, la coloración capilar es nuestra especialidad y nuestra pasión. Nuestros talentosos coloristas entienden que el color del cabello es una forma poderosa de expresión personal. Usamos productos de alta calidad y técnicas de vanguardia para crear colores vibrantes y duraderos que se adapten a tu estilo y personalidad. Ya sea que busques realzar tu color natural, añadir reflejos sutiles o atreverte con un cambio radical, estamos aquí para convertir tus sueños capilares en realidad</p>
-                                
+
                                 <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                     <i class="fas fa-xmark me-1"></i>
                                     Cerrar

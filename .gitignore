@@ -6,17 +6,7 @@
 # ApiSalonBelleza
 ApiSalonBelleza/ApiSalonBelleza.csproj
 
-ApiSalonBelleza/Models/ConsultarCitaSP_Result.cs
-ApiSalonBelleza/Models/Model1.Context.cs
-ApiSalonBelleza/Models/Model1.Designer.cs
-ApiSalonBelleza/Models/Model1.cs
-ApiSalonBelleza/Models/Model1.edmx
-ApiSalonBelleza/Models/Model1.edmx.diagram
-ApiSalonBelleza/Models/carrito.cs
-ApiSalonBelleza/Models/citas.cs
-ApiSalonBelleza/Models/productos.cs
-ApiSalonBelleza/Models/roles.cs
-ApiSalonBelleza/Models/users.cs
+ApiSalonBelleza/Models/*
 
 ApiSalonBelleza/ConsultarCitaSP_Result.cs
 ApiSalonBelleza/Model1.Context.cs

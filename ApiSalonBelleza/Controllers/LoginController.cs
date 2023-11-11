@@ -1,4 +1,4 @@
-﻿using APISalonBelleza.Entities;
+﻿using ApiSalonBelleza.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +9,12 @@ using System.IO;
 using ApiSalonBelleza;
 using ApiSalonBelleza.Smtp;
 
-namespace APISalonBelleza.Controllers
+
+namespace ApiSalonBelleza.Controllers
 {
     public class LoginController : ApiController
     {
-        //Utilitarios util = new Utilitarios();
-        Smtp smtp = new Smtp();
+        Smtp.Smtp smtp = new Smtp.Smtp();
 
         [HttpPost]
         [Route("RegistrarCuenta")]
@@ -22,7 +22,7 @@ namespace APISalonBelleza.Controllers
         {
             try
             {
-                using (var context = new salonbellezaMNEntities1())
+                using (var context = new salonEntities())
                 {
                     context.RegistrarCuentaSP(entidad.name, entidad.email, entidad.password, entidad.role_id);
                     return "OK";
@@ -40,13 +40,8 @@ namespace APISalonBelleza.Controllers
         {
             try
             {
-                using (var context = new salonbellezaMNEntities1())
+                using (var context = new salonEntities())
                 {
-                    //return (from x in context.TUsuario 
-                    //             where x.Correo == entidad.Correo
-                    //             && x.Contrasenna == entidad.Contrasenna
-                    //             && x.Estado == true
-                    //             select x).FirstOrDefault();
 
                     return context.IniciarSesionSP(entidad.email, entidad.password).FirstOrDefault();
                 }
@@ -63,7 +58,7 @@ namespace APISalonBelleza.Controllers
         {
             try
             {
-                using (var context = new salonbellezaMNEntities1())
+                using (var context = new salonEntities())
                 {
                     var datos = context.RecuperarCuentaSP(email).FirstOrDefault();
 

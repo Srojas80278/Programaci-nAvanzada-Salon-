@@ -41,6 +41,7 @@ namespace ProyectoSalonBelleza.Controllers
             {
                 Session["id"] = respuesta.id;
                 Session["name"] = respuesta.name;
+                Session["role"] = respuesta.role_id;
                 return RedirectToAction("Index", "Home");
             }
             else

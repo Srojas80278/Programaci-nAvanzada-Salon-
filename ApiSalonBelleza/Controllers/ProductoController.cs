@@ -1,5 +1,5 @@
 ﻿using ApiSalonBelleza.Entities;
-using ApiSalonBelleza.Models;
+//using ApiSalonBelleza.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace ApiSalonBelleza.Controllers
         public String RegistrarProducto(ProductoEnt q)
         {
 
-            using (var context = new salonbellezaMNEntities1())
+            using (var context = new salonEntities())
             {
                 context.RegistrarProductoSP(q.Nombre, q.Descripcion, q.Cantidad, q.Precio, q.Imagen, q.Estado);
 
@@ -28,7 +28,7 @@ namespace ApiSalonBelleza.Controllers
         [Route("ConsultarProducto")]
         public List<ConsultarProductoSP_Result> ConsultarProducto() 
         {
-            using (var contexto = new salonbellezaMNEntities1())
+            using (var contexto = new salonEntities())
             {
                 return contexto.ConsultarProductoSP().ToList();
             }
@@ -40,7 +40,7 @@ namespace ApiSalonBelleza.Controllers
         //{
         //    try
         //    {
-        //        using (var context = new salonbellezaMNEntities1())
+        //        using (var context = new salonEntities())
         //        {
         //            context.EliminarProductoSP(id);
 
