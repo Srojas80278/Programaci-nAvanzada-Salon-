@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="salonbellezaMNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="salonbellezaMNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="carrito">
           <Key>
             <PropertyRef Name="id" />
@@ -100,7 +100,13 @@
           <Parameter Name="descripcion_servicio" Type="varchar" Mode="In" />
           <Parameter Name="id_cita" Type="int" Mode="In" />
         </Function>
+        <Function Name="BorrarCita_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_cita" Type="int" Mode="In" />
+        </Function>
         <Function Name="ConsultarCitaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ConsultarUnaCita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_cita" Type="int" Mode="In" />
+        </Function>
         <Function Name="RegistrarCitaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="estilista" Type="varchar" Mode="In" />
           <Parameter Name="fecha" Type="datetime" Mode="In" />
@@ -128,8 +134,7 @@
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="salonbellezaMNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -253,6 +258,9 @@
             <Parameter Name="id_cita" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultarCitaSP" ReturnType="Collection(salonbellezaMNModel.ConsultarCitaSP_Result)" />
+          <FunctionImport Name="ConsultarUnaCita" ReturnType="Collection(salonbellezaMNModel.ConsultarUnaCita_Result)">
+          <Parameter Name="id_cita" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="RegistrarCitaSP">
             <Parameter Name="estilista" Mode="In" Type="String" />
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
@@ -261,8 +269,20 @@
             <Parameter Name="servicio" Mode="In" Type="String" />
             <Parameter Name="descripcion_servicio" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="BorrarCita_SP">
+            <Parameter Name="id_cita" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ConsultarCitaSP_Result">
+          <Property Type="Int32" Name="id_cita" Nullable="false" />
+          <Property Type="String" Name="estilista" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="sede" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nombre_cliente" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="servicio" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="descripcion_servicio" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="ConsultarUnaCita_Result">
           <Property Type="Int32" Name="id_cita" Nullable="false" />
           <Property Type="String" Name="estilista" Nullable="false" MaxLength="100" />
           <Property Type="DateTime" Name="fecha" Nullable="false" Precision="23" />
@@ -346,7 +366,21 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarUnaCita" FunctionName="salonbellezaMNModel.Store.ConsultarUnaCita">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="salonbellezaMNModel.ConsultarUnaCita_Result">
+                <ScalarProperty Name="id_cita" ColumnName="id_cita" />
+                <ScalarProperty Name="estilista" ColumnName="estilista" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="sede" ColumnName="sede" />
+                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
+                <ScalarProperty Name="servicio" ColumnName="servicio" />
+                <ScalarProperty Name="descripcion_servicio" ColumnName="descripcion_servicio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="RegistrarCitaSP" FunctionName="salonbellezaMNModel.Store.RegistrarCitaSP" />
+          <FunctionImportMapping FunctionImportName="BorrarCita_SP" FunctionName="salonbellezaMNModel.Store.BorrarCita_SP" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

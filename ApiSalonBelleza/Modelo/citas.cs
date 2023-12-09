@@ -7,11 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ApiSalonBelleza.Models
+namespace ApiSalonBelleza.Modelo
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class ConsultarCitaSP_Result
+    public partial class citas
     {
         public int id_cita { get; set; }
         public string estilista { get; set; }

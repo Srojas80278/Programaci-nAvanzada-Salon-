@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ApiSalonBelleza.Models
+namespace ApiSalonBelleza.Modelo
 {
     using System;
     using System.Data.Entity;
@@ -71,6 +71,15 @@ namespace ApiSalonBelleza.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarCitaSP_Result>("ConsultarCitaSP");
         }
     
+        public virtual ObjectResult<ConsultarUnaCita_Result> ConsultarUnaCita(Nullable<int> id_cita)
+        {
+            var id_citaParameter = id_cita.HasValue ?
+                new ObjectParameter("id_cita", id_cita) :
+                new ObjectParameter("id_cita", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarUnaCita_Result>("ConsultarUnaCita", id_citaParameter);
+        }
+    
         public virtual int RegistrarCitaSP(string estilista, Nullable<System.DateTime> fecha, string sede, string nombre_cliente, string servicio, string descripcion_servicio)
         {
             var estilistaParameter = estilista != null ?
@@ -98,6 +107,15 @@ namespace ApiSalonBelleza.Models
                 new ObjectParameter("descripcion_servicio", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCitaSP", estilistaParameter, fechaParameter, sedeParameter, nombre_clienteParameter, servicioParameter, descripcion_servicioParameter);
+        }
+    
+        public virtual int BorrarCita_SP(Nullable<int> id_cita)
+        {
+            var id_citaParameter = id_cita.HasValue ?
+                new ObjectParameter("id_cita", id_cita) :
+                new ObjectParameter("id_cita", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BorrarCita_SP", id_citaParameter);
         }
     }
 }

@@ -7,27 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ApiSalonBelleza.Models
+namespace ApiSalonBelleza.Modelo
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class users
+    public partial class productos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public users()
+        public productos()
         {
             this.carrito = new HashSet<carrito>();
         }
     
-        public int id { get; set; }
-        public string nombrecompleto { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public int role_id { get; set; }
+        public int id_producto { get; set; }
+        public string nombre { get; set; }
+        public string descripcion { get; set; }
+        public string img { get; set; }
+        public decimal precio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<carrito> carrito { get; set; }
-        public virtual roles roles { get; set; }
     }
 }

@@ -68,5 +68,36 @@ END
 GO
 
 
+--Consultar una cita en especifica para jalar los datos y actualizarlos:
+CREATE PROCEDURE ConsultarUnaCita
+	@id_cita int
+AS
+BEGIN
+	 SELECT
+	  id_cita,
+      estilista,
+      fecha,
+      sede,
+      nombre_cliente,
+      servicio,
+      descripcion_servicio
+  FROM citas Where id_cita = @id_cita
+END
+GO
+
+
+-- Borrar un registro:
+
+CREATE PROCEDURE BorrarCita_SP
+	@id_cita int
+AS
+BEGIN
+DELETE FROM citas Where id_cita = @id_cita
+END
+GO
+
+
+
+
 
 

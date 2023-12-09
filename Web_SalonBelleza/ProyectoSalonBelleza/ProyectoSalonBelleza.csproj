@@ -358,6 +358,7 @@
     <Content Include="Views\Login\FormularioRegistro.cshtml" />
     <Content Include="Views\Citas\RegistrarCita.cshtml" />
     <Content Include="Views\Citas\ConsultarCitas.cshtml" />
+    <Content Include="Views\Citas\ActualizarCita.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
