@@ -68,3 +68,27 @@ BEGIN
     WHERE [ConProducto] = @ConProducto;
 END
 GO
+
+
+-- PROCEDIMIENTO ALMACENADO DE Producto: Actualizar Producto
+CREATE PROCEDURE [dbo].[ActualizarProductoSP]
+		@Nombre				varchar(250),
+		@Descripcion					varchar(500),
+		@Cantidad					int,
+		@Precio			decimal(18, 2),
+		@Imagen				varchar(250),
+		@ConProducto int
+AS
+BEGIN
+		
+UPDATE dbo.citas
+   SET Nombre =				@Nombre,
+       Descripcion =					@Descripcion,
+       Cantidad =					@Cantidad, 
+       Precio =		    @Precio,
+       servicio =			    @servicio,
+       Imagen =   @Imagen
+
+	   where ConProducto =			@ConProducto
+END
+GO
