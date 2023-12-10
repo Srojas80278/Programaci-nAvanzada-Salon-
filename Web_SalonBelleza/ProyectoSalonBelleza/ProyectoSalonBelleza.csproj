@@ -359,6 +359,7 @@
     <Content Include="Views\Citas\RegistrarCita.cshtml" />
     <Content Include="Views\Citas\ConsultarCitas.cshtml" />
     <Content Include="Views\Citas\ActualizarCita.cshtml" />
+    <Content Include="Views\Citas\ConfirmarBorrarCita.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

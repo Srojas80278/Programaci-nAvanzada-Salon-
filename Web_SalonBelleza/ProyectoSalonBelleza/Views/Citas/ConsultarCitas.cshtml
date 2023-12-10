@@ -50,12 +50,10 @@
                             <a href="@Url.Action("ActualizarCita","Citas", new { q = item.id_cita })"><i class="fa fa-user fa-lg"></i></a>
                         </td>
                         <td style="text-align:center">
-                            <!--  <a href="@Url.Action("BorrarUnaCita","Citas", new { q = item.id_cita })"><i class="fa fa-trash fa-lg" style="color: #ff0000;"></i></a>-->
+                            <a href="@Url.Action("ConfirmarBorrarCita","Citas", new { q = item.id_cita })"><i class="fa fa-user fa-lg"></i></a>
                         </td>
                     </tr>
                 }
-
-
             </tbody>
         </table>
     </div>

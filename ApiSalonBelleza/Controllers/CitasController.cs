@@ -57,15 +57,15 @@ namespace ApiSalonBelleza.Controllers
                     return "OK";
                 }
         }
-
+    
         [HttpPost]
-        [Route("BorrarCita")]
-        public String BorrarCita(int q)
+        [Route("BorrarUnaCita2")]
+        public String BorrarUnaCita2(Cita q)
         {
 
             using (var context = new salonbellezaMNEntities())
             {
-                context.BorrarCita_SP(q); //enviamos el id de cita
+                context.BorrarCita_SP(q.id_cita);
                 return "OK";
             }
         }

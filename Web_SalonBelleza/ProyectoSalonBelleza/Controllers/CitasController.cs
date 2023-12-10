@@ -33,8 +33,6 @@ namespace ProyectoSalonBelleza.Controllers
             }
         }
 
-
-
         [HttpGet]
         public ActionResult ConsultarCitas()
         {
@@ -51,19 +49,28 @@ namespace ProyectoSalonBelleza.Controllers
         }
 
 
-        //[HttpPost]
-        //public ActionResult BorrarUnaCita(int q)
-        //{
-        //    string respuesta = CitaModelo.BorrarUnaCita(q);
-        //    if (respuesta == "OK")
-        //    {
-        //        return Json(new { success = true });
-        //    }
-        //    {
-        //        ViewBag.MensajeUsuario = "No se ha podido registrar su información";
-        //        return View();
-        //    }
-        //}
+
+        [HttpGet]
+        public ActionResult ConfirmarBorrarCita(int q)
+        {
+            var datos = CitaModelo.ConsultarUnaCita(q);
+            return View(datos);
+        }
+
+
+        [HttpPost]
+        public ActionResult BorrarUnaCita2(CitaEntidad entidad)
+        {
+            string respuesta = CitaModelo.BorrarUnaCita2(entidad);
+            if (respuesta == "OK")
+            {
+                return RedirectToAction("ConsultarCitas", "Citas"); //"Accion", "Controller"
+            }
+            {
+                ViewBag.MensajeUsuario = "No se ha podido registrar su información";
+                return View();
+            }
+        }
 
 
 

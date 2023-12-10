@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="salonbellezaMNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="salonbellezaMNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="carrito">
           <Key>
             <PropertyRef Name="id" />
@@ -134,7 +134,8 @@
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="salonbellezaMNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -257,9 +258,12 @@
             <Parameter Name="descripcion_servicio" Mode="In" Type="String" />
             <Parameter Name="id_cita" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="BorrarCita_SP">
+            <Parameter Name="id_cita" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="ConsultarCitaSP" ReturnType="Collection(salonbellezaMNModel.ConsultarCitaSP_Result)" />
           <FunctionImport Name="ConsultarUnaCita" ReturnType="Collection(salonbellezaMNModel.ConsultarUnaCita_Result)">
-          <Parameter Name="id_cita" Mode="In" Type="Int32" />
+            <Parameter Name="id_cita" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="RegistrarCitaSP">
             <Parameter Name="estilista" Mode="In" Type="String" />
@@ -268,9 +272,6 @@
             <Parameter Name="nombre_cliente" Mode="In" Type="String" />
             <Parameter Name="servicio" Mode="In" Type="String" />
             <Parameter Name="descripcion_servicio" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="BorrarCita_SP">
-            <Parameter Name="id_cita" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ConsultarCitaSP_Result">
@@ -353,6 +354,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ActualizarCitaSP" FunctionName="salonbellezaMNModel.Store.ActualizarCitaSP" />
+          <FunctionImportMapping FunctionImportName="BorrarCita_SP" FunctionName="salonbellezaMNModel.Store.BorrarCita_SP" />
           <FunctionImportMapping FunctionImportName="ConsultarCitaSP" FunctionName="salonbellezaMNModel.Store.ConsultarCitaSP">
             <ResultMapping>
               <ComplexTypeMapping TypeName="salonbellezaMNModel.ConsultarCitaSP_Result">
@@ -380,7 +382,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="RegistrarCitaSP" FunctionName="salonbellezaMNModel.Store.RegistrarCitaSP" />
-          <FunctionImportMapping FunctionImportName="BorrarCita_SP" FunctionName="salonbellezaMNModel.Store.BorrarCita_SP" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

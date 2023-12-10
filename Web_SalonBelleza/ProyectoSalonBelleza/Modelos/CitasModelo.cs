@@ -41,18 +41,17 @@ namespace ProyectoSalonBelleza.Modelos
             }
         }
 
-        /*
-        public string BorrarUnaCita(int q)
+
+        public string BorrarUnaCita2(CitaEntidad entidad)
         {
             using (var client = new HttpClient())
             {
-                var urlApi = rutaServidor + "BorrarUnaCita?q=" + q;
-                var res = client.GetAsync(urlApi).Result;
+                var urlApi = rutaServidor + "BorrarUnaCita2";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PostAsync(urlApi, jsonData).Result;
                 return res.Content.ReadFromJsonAsync<string>().Result;
             }
         }
-        */
-
 
 
 
