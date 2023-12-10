@@ -1,4 +1,5 @@
-﻿
+﻿@model ProyectoSalonBelleza.Entities.UserEnt
+
 @{
     ViewBag.Title = "FormularioLogin";
     Layout = "~/Views/Shared/Layout2.cshtml";
@@ -7,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title></title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="~/templates/Login/fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -24,30 +25,34 @@
                 <div class="signin-content">
                     <div class="signin-image">
                         <figure><img src="~/templates/Login/images/signin-image.jpg" alt="sing up image"></figure>
-                        <a>@Html.ActionLink("Crear una cuenta", "FormularioRegistro", "Home", new { area = "" }, new { @class = "nav-link" })</a>
+                        <a>@Html.ActionLink("Crear una cuenta", "FormularioRegistro", "Login", new { area = "" }, new { @class = "nav-link" })</a>
                     </div>
 
                     <div class="signin-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <form method="POST" class="register-form" id="login-form">
+                        <h2 class="form-title">Iniciar Sesión</h2>
+                        @using (Html.BeginForm("IniciarSesion", "Login", FormMethod.Post, new { @class = "register-form", id = "login-form" }))
+                        {
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="your_name" placeholder="Your Name" />
+                                @Html.TextBox("email", null, new { @id = "email", @placeholder = "Correo Electrónico" })
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="your_pass" placeholder="Password" />
+                                @Html.Password("password", null, new { @id = "password", @placeholder = "Contraseña" })
                             </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                <label for="remember-me" class="label-agree-term"><span><span></span></span>HOLAAAAAqwe</label>
-                            </div>
+                            @*<div class="form-group">
+                @Html.CheckBox("remember-me", new { @id = "remember-me", @class = "agree-term" })
+                <label for="remember-me" class="label-agree-term"><span><span></span></span>Mantener sesión iniciada</label>
+            </div>*@
                             <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Iniciar Sesión" />
                             </div>
-                        </form>
+                        }
+
+                        <a class="">@Html.ActionLink("Recuperar cuenta", "FormularioRecuperar", "Login", new { area = "" }, new { @class = "nav-link" })</a>
+
                         <div class="social-login">
-                            <span class="social-label">Or login with</span>
+                            <span class="social-label">Siguenos en</span>
                             <ul class="socials">
                                 <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
                                 <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>

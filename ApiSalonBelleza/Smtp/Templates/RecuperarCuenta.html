@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #F7F9FA;
+            margin: 0;
+            padding: 0;
+        }
+
+        table#x_udemy-email {
+            width: 100%;
+            background-color: #F7F9FA;
+            padding: 24px;
+        }
+
+        table#content {
+            width: 100%;
+            background-color: #FFF;
+        }
+
+        td {
+            padding: 24px;
+        }
+
+        p {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.4;
+            color: #000;
+        }
+
+            p.footer {
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 1.4;
+                color: #6A6F73;
+                margin: 0;
+            }
+    </style>
+</head>
+<body>
+    <table id="x_udemy-email">
+        <tr>
+            <td>&nbsp;</td>
+            <td width="600">
+                <table id="content">
+                    <tr>
+                        <td>
+                            <p>Hola, @@name</p>
+                            <p>Hemos recibido una solicitud para recuperar tu cuenta.</p>
+                            <p>Tu contraseña es: @@password</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="footer">Utopia Beuty Salon</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+</body>
+</html>

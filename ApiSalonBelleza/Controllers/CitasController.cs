@@ -14,7 +14,7 @@ namespace ApiSalonBelleza.Controllers
         public String RegistrarCita(Cita q)
         {
 
-            using (var context = new salonbellezaMNEntities())
+            using (var context = new salonEntities())
             {
                 context.RegistrarCitaSP(q.estilista, q.fecha = DateTime.Now,
                 q.sede, q.nombre_cliente, q.servicio, q.descripcion_servicio);
@@ -26,7 +26,7 @@ namespace ApiSalonBelleza.Controllers
         [Route("ConsultarCitas")]
         public List<ConsultarCitaSP_Result> ConsultarCitas() //Retornamos el resultado de el SP.
         {
-            using (var contexto = new salonbellezaMNEntities())
+            using (var contexto = new salonEntities())
             {
                 return contexto.ConsultarCitaSP().ToList();
                 //To List permite devolver en una lista de objetos en formato JSON.
