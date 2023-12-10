@@ -23,7 +23,6 @@
         </div>
 
 
-
         <table class="table">
             <thead>
                 <tr>
@@ -34,6 +33,7 @@
                     <th>Servicio</th>
                     <th>Descripción del Servicio</th>
                     <th>Actualizar</th>
+                    <th>Borrar</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,7 +47,10 @@
                         <td>@Html.DisplayFor(modelItem => item.servicio)</td>
                         <td>@Html.DisplayFor(modelItem => item.descripcion_servicio)</td>
                         <td style="text-align:center">
-                            <a href="@Url.Action("InsertarAccion","InsertarController", new { q = item.id_cita })"><i class="fa fa-user fa-lg"></i></a>
+                            <a href="@Url.Action("ActualizarCita","Citas", new { q = item.id_cita })"><i class="fa fa-user fa-lg"></i></a>
+                        </td>
+                        <td style="text-align:center">
+                            <a href="@Url.Action("ConfirmarBorrarCita","Citas", new { q = item.id_cita })"><i class="fa fa-user fa-lg"></i></a>
                         </td>
                     </tr>
                 }

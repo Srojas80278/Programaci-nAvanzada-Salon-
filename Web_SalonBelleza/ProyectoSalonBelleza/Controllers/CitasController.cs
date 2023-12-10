@@ -25,9 +25,9 @@ namespace ProyectoSalonBelleza.Controllers
             string respuesta = CitaModelo.RegistrarCita(entidad);
             if (respuesta == "OK")
             {
-                ViewBag.MensajeUsuario = "Registro Exitoso";
-            }
-            {
+                return RedirectToAction("ConsultarCitas", "Citas"); //"Accion", "Controller"
+            
+            }else{
                 ViewBag.MensajeUsuario = "No se ha podido registrar su información";
                 return View();
             }
@@ -41,17 +41,50 @@ namespace ProyectoSalonBelleza.Controllers
         }
 
 
+        [HttpGet] 
+        public ActionResult ActualizarCita(int q)
+        {
+            var datos = CitaModelo.ConsultarUnaCita(q);
+            return View(datos);
+        }
 
-        //Actualizar Citas
+
+
+        [HttpGet]
+        public ActionResult ConfirmarBorrarCita(int q)
+        {
+            var datos = CitaModelo.ConsultarUnaCita(q);
+            return View(datos);
+        }
+
+
+        [HttpPost]
+        public ActionResult BorrarUnaCita2(CitaEntidad entidad)
+        {
+            string respuesta = CitaModelo.BorrarUnaCita2(entidad);
+            if (respuesta == "OK")
+            {
+                return RedirectToAction("ConsultarCitas", "Citas"); //"Accion", "Controller"
+            }
+            {
+                ViewBag.MensajeUsuario = "No se ha podido registrar su información";
+                return View();
+            }
+        }
+
+
+
         [HttpPost] //Aqui no se cambia a PUT porque estamos trabajando en MCV y solo existen (Post y Get)
         public ActionResult ActualizarCita(CitaEntidad entidad)
         {
             string respuesta = CitaModelo.ActualizarCita(entidad);
             if (respuesta == "OK")
             {
-                ViewBag.MensajeUsuario = "Registro Exitoso"; 
+                ViewBag.MensajeUsuario = "Actualización Exitoso";
                 return RedirectToAction("ConsultarCitas", "Citas"); //"Accion", "Controller"
+
             }
+            else
             {
                 ViewBag.MensajeUsuario = "No se ha podido registrar su información";
                 return View();

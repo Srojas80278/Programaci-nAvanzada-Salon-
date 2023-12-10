@@ -8,7 +8,6 @@ namespace ProyectoSalonBelleza.Entidades
     public class CitaEntidad
     {
         public int id_cita { get; set; }
-
         public string estilista { get; set; }
         public DateTime fecha { get; set; }
         public string sede { get; set; }

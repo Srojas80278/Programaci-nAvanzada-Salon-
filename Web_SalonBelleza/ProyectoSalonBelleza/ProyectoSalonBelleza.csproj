@@ -366,12 +366,17 @@
     <Content Include="Views\Shared\Layout2.cshtml" />
     <Content Include="Views\Citas\RegistrarCita.cshtml" />
     <Content Include="Views\Citas\ConsultarCitas.cshtml" />
+
+    <Content Include="Views\Citas\ActualizarCita.cshtml" />
+    <Content Include="Views\Citas\ConfirmarBorrarCita.cshtml" />
+
     <Content Include="Views\Login\FormularioLogin.cshtml" />
     <Content Include="Views\Login\FormularioRecuperar.cshtml" />
     <Content Include="Views\Login\FormularioRegistro.cshtml" />
     <Content Include="Views\Producto\RegistrarProducto.cshtml" />
     <Content Include="Views\Producto\ConsultarProducto.cshtml" />
     <Content Include="Views\Producto\EliminarProducto.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

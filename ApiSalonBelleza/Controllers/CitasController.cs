@@ -1,11 +1,8 @@
 ﻿using ApiSalonBelleza.Entities;
-//using ApiSalonBelleza.Models;
+using ApiSalonBelleza.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Timers;
 using System.Web.Http;
 
 namespace ApiSalonBelleza.Controllers
@@ -21,8 +18,7 @@ namespace ApiSalonBelleza.Controllers
             {
                 context.RegistrarCitaSP(q.estilista, q.fecha = DateTime.Now,
                 q.sede, q.nombre_cliente, q.servicio, q.descripcion_servicio);
-
-                return "Registro Realizado Correctamente";
+                return "OK";
             }
         }
 
@@ -37,14 +33,22 @@ namespace ApiSalonBelleza.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("ConsultarUnaCita")]
+        public ConsultarUnaCita_Result ConsultarUnaCita(int q) //Retornamos el resultado de el SP.
+        {
+            using (var contexto = new salonbellezaMNEntities())
+            {
+                return contexto.ConsultarUnaCita(q).FirstOrDefault();
+            }
+        }
+
+
         [HttpPut]
         [Route("ActualizarCita")]
-        public String ActualizarCita(Cita q)
+        public String ActualizarCita(Cita q) 
         {
-
-            try
-            {
-                using (var context = new salonEntities())   //La fecha en el sistema es para ver cuando solicita la cita.
+                using (var context = new salonbellezaMNEntities())   //La fecha en el sistema es para ver cuando solicita la cita.
                                                                      //Como M.N el salon debe comunicarle al cliente cuando lo puede atender.
                 {
                     context.ActualizarCitaSP(q.estilista, q.fecha = DateTime.Now,
@@ -52,12 +56,19 @@ namespace ApiSalonBelleza.Controllers
 
                     return "OK";
                 }
-            }
-            catch (Exception)
-            {
-                return string.Empty;
+        }
+    
+        [HttpPost]
+        [Route("BorrarUnaCita2")]
+        public String BorrarUnaCita2(Cita q)
+        {
 
+            using (var context = new salonbellezaMNEntities())
+            {
+                context.BorrarCita_SP(q.id_cita);
+                return "OK";
             }
         }
+
     }
 }
