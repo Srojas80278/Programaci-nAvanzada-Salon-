@@ -33,16 +33,6 @@ END
 GO
 
 
-USE [salonbellezaMN]
-GO
-
-/****** Object:  StoredProcedure [dbo].[ActualizarCitaSP]    Script Date: 10/11/2023 22:51:25 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
 
 CREATE PROCEDURE [dbo].[ActualizarCitaSP]
 		@estilista				varchar(100),
