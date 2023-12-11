@@ -41,7 +41,9 @@
                     {
                         <li class="nav-item">@Html.ActionLink("Registrar Cita", "RegistrarCita", "Citas", new { area = "" }, new { @class = "nav-link" })</li>
                         <li class="nav-item">@Html.ActionLink("Consultar Cita", "ConsultarCitas", "Citas", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Productos", "ConsultarProducto", "Producto", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Registrar Productos", "RegistrarProducto", "Producto", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Consultar Productos", "ConsultarProducto", "Producto", new { area = "" }, new { @class = "nav-link" })</li>
+
                     }
 
                     @if (Session["name"] == null)
@@ -205,7 +207,6 @@
             </div>
         </div>
     </section>
-
     <!-- Team-->
     <section class="page-section bg-light" id="team">
         <div class="container">

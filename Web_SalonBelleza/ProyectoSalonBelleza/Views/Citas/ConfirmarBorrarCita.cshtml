@@ -3,41 +3,55 @@
 @{
     ViewBag.Title = "ConfirmarBorrarCita";
     Layout = null; // Asegúrate de que Layout esté establecido como null
-
 }
 
-<h2>ConfirmarBorrarCita</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <!-- Agregar las referencias a Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
 
-@using (Html.BeginForm("BorrarUnaCita2", "Citas", FormMethod.Post, new { @class = "form-horizontal", id = "citaForm" }))
-{
+    <h2>ConfirmarBorrarCita</h2>
 
-    @Html.HiddenFor(m => m.id_cita)
+    @using (Html.BeginForm("BorrarUnaCita2", "Citas", FormMethod.Post, new { @class = "form-horizontal", id = "citaForm" }))
+    {
+        @Html.HiddenFor(m => m.id_cita)
 
+        <div class="form-group">
+            <label>estilista</label>
+            @Html.TextBoxFor(m => m.estilista, new { @class = "form-control form-control-lg", @placeholder = "estilista", @type = "text" })
+        </div>
+        <div class="form-group">
+            <label>fecha</label>
+            @Html.TextBoxFor(m => m.fecha, new { @class = "form-control form-control-lg", @placeholder = "fecha", @type = "datetime" })
+        </div>
+        <div class="form-group">
+            <label>sede</label>
+            @Html.TextBoxFor(m => m.sede, new { @class = "form-control form-control-lg", @placeholder = "sede", @type = "text" })
+        </div>
+        <div class="form-group">
+            <label>nombre_cliente</label>
+            @Html.TextBoxFor(m => m.nombre_cliente, new { @class = "form-control form-control-lg", @placeholder = "nombre_cliente", @type = "text" })
+        </div>
+        <div class="form-group">
+            <label>servicio</label>
+            @Html.TextBoxFor(m => m.servicio, new { @class = "form-control form-control-lg", @placeholder = "servicio", @type = "text" })
+        </div>
+        <div class="form-group">
+            <label>descripcion_servicio</label>
+            @Html.TextBoxFor(m => m.descripcion_servicio, new { @class = "form-control form-control-lg", @placeholder = "descripcion_servicio", @type = "text" })
+        </div>
 
-    <div class="form-group">
-        <label>estilista</label>
-        @Html.TextBoxFor(m => m.estilista, new { @class = "form-control form-control-lg", @placeholder = "estilista", @type = "text" })
-    </div>
-    <div class="form-group">
-        <label>fecha</label>
-        @Html.TextBoxFor(m => m.fecha, new { @class = "form-control form-control-lg", @placeholder = "fecha", @type = "datetime" })
-    </div>
-    <div class="form-group">
-        <label>sede</label>
-        @Html.TextBoxFor(m => m.sede, new { @class = "form-control form-control-lg", @placeholder = "sede", @type = "text" })
-    </div>
-    <div class="form-group">
-        <label>nombre_cliente</label>
-        @Html.TextBoxFor(m => m.nombre_cliente, new { @class = "form-control form-control-lg", @placeholder = "nombre_cliente", @type = "text" })
-    </div>
-    <div class="form-group">
-        <label>servicio</label>
-        @Html.TextBoxFor(m => m.servicio, new { @class = "form-control form-control-lg", @placeholder = "servicio", @type = "text" })
-    </div>
-    <div class="form-group">
-        <label>descripcion_servicio</label>
-        @Html.TextBoxFor(m => m.descripcion_servicio, new { @class = "form-control form-control-lg", @placeholder = "descripcion_servicio", @type = "text" })
-    </div>
+        <button type="submit" class="btn btn-primary mr-2">Borrar Cita</button>
+    }
 
-    <button type="submit" class="btn btn-primary mr-2">Borrar Cita</button>
-}
+    <!-- Agregar las referencias a Bootstrap JS y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

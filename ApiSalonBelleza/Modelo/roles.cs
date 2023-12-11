@@ -20,8 +20,8 @@ namespace ApiSalonBelleza.Modelo
             this.users = new HashSet<users>();
         }
     
-        public int id { get; set; }
-        public string nombre { get; set; }
+        public long id { get; set; }
+        public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<users> users { get; set; }

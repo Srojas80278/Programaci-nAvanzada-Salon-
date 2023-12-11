@@ -20,11 +20,11 @@ namespace ApiSalonBelleza.Modelo
             this.carrito = new HashSet<carrito>();
         }
     
-        public int id { get; set; }
-        public string nombrecompleto { get; set; }
+        public long id { get; set; }
+        public string name { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-        public int role_id { get; set; }
+        public long role_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<carrito> carrito { get; set; }

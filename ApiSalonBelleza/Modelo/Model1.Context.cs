@@ -15,10 +15,10 @@ namespace ApiSalonBelleza.Modelo
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class salonbellezaMNEntities : DbContext
+    public partial class salonEntities : DbContext
     {
-        public salonbellezaMNEntities()
-            : base("name=salonbellezaMNEntities")
+        public salonEntities()
+            : base("name=salonEntities")
         {
         }
     
@@ -80,6 +80,11 @@ namespace ApiSalonBelleza.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarCitaSP_Result>("ConsultarCitaSP");
         }
     
+        public virtual ObjectResult<ConsultarProductoSP_Result> ConsultarProductoSP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarProductoSP_Result>("ConsultarProductoSP");
+        }
+    
         public virtual ObjectResult<ConsultarUnaCita_Result> ConsultarUnaCita(Nullable<int> id_cita)
         {
             var id_citaParameter = id_cita.HasValue ?
@@ -87,6 +92,37 @@ namespace ApiSalonBelleza.Modelo
                 new ObjectParameter("id_cita", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarUnaCita_Result>("ConsultarUnaCita", id_citaParameter);
+        }
+    
+        public virtual int EliminarProductoSP(Nullable<int> conProducto)
+        {
+            var conProductoParameter = conProducto.HasValue ?
+                new ObjectParameter("ConProducto", conProducto) :
+                new ObjectParameter("ConProducto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarProductoSP", conProductoParameter);
+        }
+    
+        public virtual ObjectResult<IniciarSesionSP_Result> IniciarSesionSP(string email, string password)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IniciarSesionSP_Result>("IniciarSesionSP", emailParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<RecuperarCuentaSP_Result> RecuperarCuentaSP(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RecuperarCuentaSP_Result>("RecuperarCuentaSP", emailParameter);
         }
     
         public virtual int RegistrarCitaSP(string estilista, Nullable<System.DateTime> fecha, string sede, string nombre_cliente, string servicio, string descripcion_servicio)
@@ -116,6 +152,56 @@ namespace ApiSalonBelleza.Modelo
                 new ObjectParameter("descripcion_servicio", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCitaSP", estilistaParameter, fechaParameter, sedeParameter, nombre_clienteParameter, servicioParameter, descripcion_servicioParameter);
+        }
+    
+        public virtual int RegistrarCuentaSP(string name, string email, string password, Nullable<long> role_id)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var role_idParameter = role_id.HasValue ?
+                new ObjectParameter("role_id", role_id) :
+                new ObjectParameter("role_id", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCuentaSP", nameParameter, emailParameter, passwordParameter, role_idParameter);
+        }
+    
+        public virtual int RegistrarProductoSP(string nombre, string descripcion, Nullable<int> cantidad, Nullable<decimal> precio, string imagen, Nullable<bool> estado)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("Imagen", imagen) :
+                new ObjectParameter("Imagen", typeof(string));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarProductoSP", nombreParameter, descripcionParameter, cantidadParameter, precioParameter, imagenParameter, estadoParameter);
         }
     }
 }

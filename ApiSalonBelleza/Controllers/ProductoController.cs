@@ -1,4 +1,5 @@
 ﻿using ApiSalonBelleza.Entities;
+using ApiSalonBelleza.Modelo;
 //using ApiSalonBelleza.Models;
 using System;
 using System.Collections.Generic;

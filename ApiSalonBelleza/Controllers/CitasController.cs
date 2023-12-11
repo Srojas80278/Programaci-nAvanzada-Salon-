@@ -37,7 +37,7 @@ namespace ApiSalonBelleza.Controllers
         [Route("ConsultarUnaCita")]
         public ConsultarUnaCita_Result ConsultarUnaCita(int q) //Retornamos el resultado de el SP.
         {
-            using (var contexto = new salonbellezaMNEntities())
+            using (var contexto = new salonEntities())
             {
                 return contexto.ConsultarUnaCita(q).FirstOrDefault();
             }
@@ -48,7 +48,7 @@ namespace ApiSalonBelleza.Controllers
         [Route("ActualizarCita")]
         public String ActualizarCita(Cita q) 
         {
-                using (var context = new salonbellezaMNEntities())   //La fecha en el sistema es para ver cuando solicita la cita.
+                using (var context = new salonEntities())   //La fecha en el sistema es para ver cuando solicita la cita.
                                                                      //Como M.N el salon debe comunicarle al cliente cuando lo puede atender.
                 {
                     context.ActualizarCitaSP(q.estilista, q.fecha = DateTime.Now,
@@ -63,7 +63,7 @@ namespace ApiSalonBelleza.Controllers
         public String BorrarUnaCita2(Cita q)
         {
 
-            using (var context = new salonbellezaMNEntities())
+            using (var context = new salonEntities())
             {
                 context.BorrarCita_SP(q.id_cita);
                 return "OK";

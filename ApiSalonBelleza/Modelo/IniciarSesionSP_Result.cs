@@ -10,18 +10,13 @@
 namespace ApiSalonBelleza.Modelo
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class carrito
+    public partial class IniciarSesionSP_Result
     {
-        public int id { get; set; }
-        public long user_id { get; set; }
-        public long id_producto { get; set; }
-        public int cantidad { get; set; }
-        public decimal precio { get; set; }
-        public decimal subtotal { get; set; }
-    
-        public virtual productos productos { get; set; }
-        public virtual users users { get; set; }
+        public long id { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public long role_id { get; set; }
     }
 }
