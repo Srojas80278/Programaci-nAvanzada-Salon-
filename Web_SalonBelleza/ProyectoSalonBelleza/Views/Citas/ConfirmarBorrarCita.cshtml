@@ -16,32 +16,32 @@
 
             <div class="form-group">
                 <label>Estilista</label>
-                @Html.TextBoxFor(m => m.estilista, new { @class = "form-control", @placeholder = "Estilista", @type = "text" })
+                @Html.TextBoxFor(m => m.estilista, new { @class = "form-control", @placeholder = "Estilista", @type = "text", @readonly = "readonly" })
             </div><br>
 
             <div class="form-group">
                 <label>Fecha</label>
-                @Html.TextBoxFor(m => m.fecha, new { @class = "form-control", @placeholder = "Fecha", @type = "datetime" })
+                @Html.TextBoxFor(m => m.fecha, new { @class = "form-control", @placeholder = "Fecha", @type = "datetime", @readonly = "readonly" })
             </div><br>
 
             <div class="form-group">
                 <label>Sede</label>
-                @Html.TextBoxFor(m => m.sede, new { @class = "form-control", @placeholder = "Sede", @type = "text" })
+                @Html.TextBoxFor(m => m.sede, new { @class = "form-control", @placeholder = "Sede", @type = "text", @readonly = "readonly" })
             </div><br>
 
             <div class="form-group">
                 <label>Nombre del Cliente</label>
-                @Html.TextBoxFor(m => m.nombre_cliente, new { @class = "form-control", @placeholder = "Nombre del Cliente", @type = "text" })
+                @Html.TextBoxFor(m => m.nombre_cliente, new { @class = "form-control", @placeholder = "Nombre del Cliente", @type = "text", @readonly = "readonly" })
             </div><br>
 
             <div class="form-group">
                 <label>Servicio</label>
-                @Html.TextBoxFor(m => m.servicio, new { @class = "form-control", @placeholder = "Servicio", @type = "text" })
+                @Html.TextBoxFor(m => m.servicio, new { @class = "form-control", @placeholder = "Servicio", @type = "text", @readonly = "readonly" })
             </div><br>
 
             <div class="form-group">
                 <label>Descripción del Servicio</label>
-                @Html.TextBoxFor(m => m.descripcion_servicio, new { @class = "form-control", @placeholder = "Descripción del Servicio", @type = "text" })
+                @Html.TextBoxFor(m => m.descripcion_servicio, new { @class = "form-control", @placeholder = "Descripción del Servicio", @type = "text", @readonly = "readonly" })
             </div><br>
 
             <button type="submit" class="btn btn-primary mr-2">Borrar Cita</button><br><br>

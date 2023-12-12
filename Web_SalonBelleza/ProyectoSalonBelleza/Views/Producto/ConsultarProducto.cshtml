@@ -7,9 +7,9 @@
 
 <body>
     <div class="container">
-        <h2>Consultar Producto</h2>
+        <h2 class="text-center mb-6 display-6 font-weight-bold text-success text-bg-dark">Consultar Producto</h2>
 
-        <p>
+        <p style="padding-bottom: 20px; padding-top: 20px;" class="text-center">
             @Html.ActionLink("Registrar Nuevo Producto", "RegistrarProducto", null, new { @class = "btn btn-success" })
         </p>
 
@@ -18,7 +18,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th class="text-center">
-                            @Html.DisplayNameFor(model => model.ConProducto)
+                            Código Producto
                         </th>
                         <th class="text-center">
                             @Html.DisplayNameFor(model => model.Nombre)
@@ -64,7 +64,7 @@
                                 @Html.DisplayFor(modelItem => item.Precio)
                             </td>
                             <td style="text-align:center">
-                                <img style="max-width: 100px" src="@item.Imagen" alt="Imagen">
+                                <img style="max-width: 100px; height: auto;" src="@item.Imagen" alt="Imagen">
                             </td>
                             <td style="text-align:center">
                                 <a href="@Url.Action("ActualizarProducto","Producto", new { q = item.ConProducto })"><i class="fa fa-user fa-lg" style="color: #13FF00;"></i></a>
@@ -73,10 +73,11 @@
                                 <a href="@Url.Action("ConfirmarBorrarProducto","Producto", new { q = item.ConProducto })"><i class="fa fa-trash fa-lg" style="color: #ff0000;"></i></a>
                             </td>
                         </tr>
-                     }
+                    }
                 </tbody>
             </table>
         </div>
+
     </div>
 
 </body>

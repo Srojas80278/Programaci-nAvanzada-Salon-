@@ -10,7 +10,7 @@
 <body>
     <div class="container">
 
-        <h2>ActualizarProducto</h2>
+        <h2>Actualizar Producto:</h2>
 
         @using (Html.BeginForm("ActualizarProducto", "Producto", FormMethod.Post, new { @class = "form-horizontal", id = "" }))
         {
@@ -43,7 +43,7 @@
             </div><br>
 
 
-            <button type="submit" class="btn btn-primary mr-2">Actualizar Cita</button><br><br>
+            <button type="submit" class="btn btn-primary mr-2">Actualizar Producto</button><br><br>
             <a href="@Url.Action("ConsultarProducto","Producto")" class="btn btn-danger">Cancelar</a>
         }
     </div>

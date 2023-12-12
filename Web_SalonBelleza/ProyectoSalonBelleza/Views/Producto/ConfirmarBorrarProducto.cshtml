@@ -8,7 +8,7 @@
 
 <body>
     <div class="container">
-        <h2>Eliminar Producto?</h2>
+        <h3 style="padding-bottom:10px">Información del producto</h3>
 
         @using (Html.BeginForm("BorrarUnProducto2", "Producto", FormMethod.Post, new { @class = "form-horizontal", id = "citaForm" }))
         {
@@ -16,32 +16,33 @@
 
             <div class="form-group">
                 <label>Nombre producto</label>
-                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-lg", @placeholder = "Nombre", @type = "text" })
+                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-lg", @placeholder = "Nombre", @type = "text", @readonly = "readonly" })
             </div><br>
 
             <div class="form-group">
                 <label>Descripcion del producto</label>
-                @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control form-control-lg", @placeholder = "Descripcion", @type = "text" })
+                @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control form-control-lg", @placeholder = "Descripcion", @type = "text", @readonly = "readonly" })
             </div><br>
 
             <div class="form-group">
                 <label>Cantidad de productos</label>
-                @Html.TextBoxFor(m => m.Cantidad, new { @class = "form-control form-control-lg", @placeholder = "Cantidad", @type = "number" })
+                @Html.TextBoxFor(m => m.Cantidad, new { @class = "form-control form-control-lg", @placeholder = "Cantidad", @type = "number", @readonly = "readonly" })
             </div><br>
 
             <div class="form-group">
                 <label>Precio</label>
-                @Html.TextBoxFor(m => m.Precio, new { @class = "form-control form-control-lg", @placeholder = "Precio", @type = "decimal" })
+                @Html.TextBoxFor(m => m.Precio, new { @class = "form-control form-control-lg", @placeholder = "Precio", @type = "decimal", @readonly = "readonly" })
             </div><br>
 
             <div class="form-group">
                 <label>Imagen</label>
-                @Html.TextBoxFor(m => m.Imagen, new { @class = "form-control form-control-lg", @placeholder = "Imagen", @type = "text" })
+                @Html.TextBoxFor(m => m.Imagen, new { @class = "form-control form-control-lg", @placeholder = "Imagen", @type = "text", @readonly = "readonly" })
             </div><br>
 
-            <button type="submit" class="btn btn-primary mr-2">Borrar Cita</button><br><br>
+            <button type="submit" class="btn btn-primary mr-2">Borrar Producto</button><br><br>
             <a href="@Url.Action("ConsultarProducto","Producto")" class="btn btn-danger">Cancelar</a>
         }
+
     </div>
 </body>
 

@@ -18,17 +18,19 @@
         Productos
     </h1>
 
-        <div class="d-flex flex-wrap justify-content-center">
-            @foreach (var item in Model)
-            {
-                <div class="card px-1">
-                    <img src="@item.Imagen" class="card-img-top mx-auto" style="width:350px" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">@item.Nombre</h5>
-                        <p class="card-text text-center">@item.Descripcion.</p>
-                    </div>
+    <div class="d-flex flex-wrap justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="card px-1" style="margin-bottom: 20px;">
+                <img src="@item.Imagen" class="card-img-top mx-auto" style="width:350px" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center">@item.Nombre</h5>
+                    <p class="card-text text-center">@item.Descripcion.</p>
                 </div>
-            }
+            </div>
+        }
     </div>
+
+
 </body>
 </html>

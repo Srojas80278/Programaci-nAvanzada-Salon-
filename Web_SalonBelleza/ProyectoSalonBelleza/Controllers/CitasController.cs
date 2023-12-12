@@ -36,7 +36,7 @@ namespace ProyectoSalonBelleza.Controllers
         [HttpGet]
         public ActionResult ConsultarCitas()
         {
-            if (Session["role"] != null && (int)Session["role"] == 1)
+            if (Session["role"] != null && (long)Session["role"] == 1)
             {
                 var datos = CitaModelo.ConsultarCitas();
                 return View(datos);

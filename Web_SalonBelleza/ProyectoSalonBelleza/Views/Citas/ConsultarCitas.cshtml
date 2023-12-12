@@ -7,7 +7,7 @@
 
 <body>
     <div class="container">
-        <h2>Consultar Citas</h2>
+        <h2 class="text-center mb-6 display-6 font-weight-bold text-primary text-bg-dark">¡Registro de Citas!</h2>
 
         <script>
             if (Session["role"] == 2) {
@@ -15,52 +15,54 @@
             }
             console.log(Session["role"]);
         </script>
-
-        <div class="d-flex justify-content-center">
-            @Html.ActionLink("Crear Nueva Cita", "RegistrarCita", null, new { @class = "btn btn-primary" })
+        <div style="padding-top:20px; padding-bottom:20px" class="d-flex justify-content-center">
+            @Html.ActionLink("Crear Nueva Cita", "RegistrarCita", null, new { @class = "btn btn-primary text-dark" })
         </div>
 
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Estilista</th>
-                    <th>Fecha</th>
-                    <th>Sede</th>
-                    <th>Nombre del Cliente</th>
-                    <th>Servicio</th>
-                    <th>Descripción del Servicio</th>
-                    @if (Session["role"] != null && Convert.ToInt32(Session["role"]) == 1)
-                    {
-                        <th>Actualizar</th>
-                        <th>Borrar</th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.estilista)</td>
-                        <td>@Html.DisplayFor(modelItem => item.fecha)</td>
-                        <td>@Html.DisplayFor(modelItem => item.sede)</td>
-                        <td>@Html.DisplayFor(modelItem => item.nombre_cliente)</td>
-                        <td>@Html.DisplayFor(modelItem => item.servicio)</td>
-                        <td>@Html.DisplayFor(modelItem => item.descripcion_servicio)</td>
-
+                        <th>Estilista</th>
+                        <th>Fecha</th>
+                        <th>Sede</th>
+                        <th>Nombre del Cliente</th>
+                        <th>Servicio</th>
+                        <th>Descripción del Servicio</th>
                         @if (Session["role"] != null && Convert.ToInt32(Session["role"]) == 1)
                         {
-                            <td style="text-align:center">
-                                <a href="@Url.Action("ActualizarCita","Citas", new { q = item.id_cita })"><i class="fa fa-user fa-lg"></i></a>
-                            </td>
-                            <td style="text-align:center">
-                                <a href="@Url.Action("ConfirmarBorrarCita","Citas", new { q = item.id_cita })"><i class="fa fa-trash fa-lg" style="color: #ff0000;"></i></a>
-                            </td>
+                            <th>Actualizar</th>
+                            <th>Borrar</th>
                         }
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.estilista)</td>
+                            <td>@Html.DisplayFor(modelItem => item.fecha)</td>
+                            <td>@Html.DisplayFor(modelItem => item.sede)</td>
+                            <td>@Html.DisplayFor(modelItem => item.nombre_cliente)</td>
+                            <td>@Html.DisplayFor(modelItem => item.servicio)</td>
+                            <td>@Html.DisplayFor(modelItem => item.descripcion_servicio)</td>
+
+                            @if (Session["role"] != null && Convert.ToInt32(Session["role"]) == 1)
+                            {
+                                <td style="text-align:center">
+                                    <a href="@Url.Action("ActualizarCita","Citas", new { q = item.id_cita })"><i class="fa fa-user fa-lg"></i></a>
+                                </td>
+                                <td style="text-align:center">
+                                    <a href="@Url.Action("ConfirmarBorrarCita","Citas", new { q = item.id_cita })"><i class="fa fa-trash fa-lg" style="color: #ff0000;"></i></a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </body>
 
