@@ -75,7 +75,7 @@ GO
 CREATE TABLE citas (
     id_cita INT IDENTITY(1,1) PRIMARY KEY,
     estilista VARCHAR(100) NOT NULL,
-    fecha DATE NOT NULL,
+    fecha DATETIME NOT NULL,
     sede VARCHAR(50) NOT NULL,
     nombre_cliente VARCHAR(100) NOT NULL,
     servicio VARCHAR(30) NOT NULL,
@@ -290,6 +290,5 @@ UPDATE [dbo].[users]
    SET [role_id] = 1
  WHERE id=1
 GO
-
 
 
