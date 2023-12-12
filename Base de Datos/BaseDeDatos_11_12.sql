@@ -282,9 +282,14 @@ VALUES ('usuario');
 
 
 
---SELECT * FROM ROLES;
---SELECT * FROM users;
+SELECT * FROM ROLES;
+SELECT * FROM users;
 
+--== Grant Admin ==--
+UPDATE [dbo].[users]
+   SET [role_id] = 1
+ WHERE id=1
+GO
 
 
 

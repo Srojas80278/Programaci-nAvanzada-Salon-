@@ -19,16 +19,16 @@
 
 <body>
     <div class="main">
+
         <!-- Sing in  Form -->
         <section class="sign-in">
-            <div class="container">
+            <div class="container pt-1">
                 @if (ViewBag.MensajeUsuario != null)
                 {
-                    <div class="alert alert-danger text-center mt-2" role="alert">
+                    <div class="alert alert-danger text-center mt-4" role="alert">
                         @ViewBag.MensajeUsuario
                     </div>
                 }
-
                 <div class="signin-content">
                     <div class="signin-image">
                         <figure><img src="~/templates/Login/images/signin-image.jpg" alt="sing up image"></figure>
@@ -41,12 +41,13 @@
                         <p class="social-label">Recupera tu contraseña con tu correo electrónico</p>
                         <br>
                         <br>
+
                         @using (Html.BeginForm("RecuperarCuenta", "Login", FormMethod.Post, new { @class = "register-form", id = "login-form" }))
                         {
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 @*@Html.TextBox("email", null, new { @id = "email", @placeholder = "Correo Electrónico" })*@
-                                @Html.TextBoxFor(m => m.email, new { @class = "form-control form-control-lg", @placeholder = "Correo Electrónico", @type = "email" })
+                                @Html.TextBoxFor(m => m.email, new { @class = "form-control form-control-lg", @placeholder = "Correo Electrónico", @type = "email",@required="required"})
                             </div>
                             @*<div class="form-group">
                         <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>

@@ -37,7 +37,5 @@ namespace ProyectoSalonBelleza.Controllers
             return View("~/Views/Login/FormularioRegistro.cshtml");
         }
 
-
-
     }
 }

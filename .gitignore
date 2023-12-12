@@ -4,8 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # ApiSalonBelleza
-ApiSalonBelleza/ApiSalonBelleza.csproj
 
+ApiSalonBelleza/Modelos/*
 ApiSalonBelleza/Models/*
 
 ApiSalonBelleza/ConsultarCitaSP_Result.cs

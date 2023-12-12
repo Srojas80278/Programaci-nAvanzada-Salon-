@@ -47,7 +47,7 @@ namespace ProyectoSalonBelleza.Controllers
             else
             {
                 ViewBag.MensajeUsuario = "No se ha podido validar su información";
-                return RedirectToAction("FormularioLogin", "Login");
+                return View("~/Views/Login/FormularioLogin.cshtml");
             }
         }
 
@@ -66,7 +66,8 @@ namespace ProyectoSalonBelleza.Controllers
 
             if (respuesta == "OK")
             {
-                return RedirectToAction("FormularioLogin", "Home");
+                ViewBag.MensajeRegistro = "Su cuenta se a creado correctamente";
+                return View("~/Views/Login/FormularioLogin.cshtml");
             }
             else
             {

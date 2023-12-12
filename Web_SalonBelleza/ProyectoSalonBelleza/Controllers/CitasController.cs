@@ -36,8 +36,12 @@ namespace ProyectoSalonBelleza.Controllers
         [HttpGet]
         public ActionResult ConsultarCitas()
         {
-            var datos = CitaModelo.ConsultarCitas();
-            return View(datos);
+            if (Session["role"] != null && (int)Session["role"] == 1)
+            {
+                var datos = CitaModelo.ConsultarCitas();
+                return View(datos);
+            }
+            return RedirectToAction("FormularioLogin", "Login");
         }
 
 
@@ -47,7 +51,6 @@ namespace ProyectoSalonBelleza.Controllers
             var datos = CitaModelo.ConsultarUnaCita(q);
             return View(datos);
         }
-
 
 
         [HttpGet]

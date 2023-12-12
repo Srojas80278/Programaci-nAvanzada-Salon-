@@ -14,9 +14,15 @@ namespace ProyectoSalonBelleza.Controllers
        
         [HttpGet]
         public ActionResult RegistrarProducto()
-
         {
-            return View();
+            if (Session["role"] != null && (int)Session["role"] == 1)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("FormularioLogin", "Login");
+            }
         }
 
 
@@ -39,9 +45,17 @@ namespace ProyectoSalonBelleza.Controllers
         [HttpGet]
         public ActionResult ConsultarProducto()
         {
-            var datos = ProductoModelo.ConsultarProducto();
-            return View(datos);
+            if (Session["role"] != null && (int)Session["role"] == 1)
+            {
+                var datos = ProductoModelo.ConsultarProducto();
+                return View(datos);
+            }
+            else
+            {
+                return RedirectToAction("FormularioLogin", "Login");
+            }
         }
+
 
         [HttpGet]
         public ActionResult ActualizarProducto(int q)
@@ -92,12 +106,11 @@ namespace ProyectoSalonBelleza.Controllers
             }
         }
 
-
-
-
-
-
-
+        public ActionResult ClienteVerProducto()
+        {
+            var datos = ProductoModelo.ConsultarProducto();
+            return View("~/Views/Producto/ClienteVerProducto.cshtml", datos);
+        }
 
     }
 }

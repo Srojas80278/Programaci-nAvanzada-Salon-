@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="salonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="salonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="citas">
           <Key>
             <PropertyRef Name="id_cita" />
@@ -46,7 +46,7 @@
           <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="role_id" Type="bigint" Nullable="false" />
         </EntityType>
-        <Association Name="FK__users__role_id__398D8EEE">
+        <Association Name="FK__users__role_id__4BAC3F29">
           <End Role="roles" Type="Self.roles" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -124,12 +124,13 @@
           <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__users__role_id__398D8EEE" Association="Self.FK__users__role_id__398D8EEE">
+          <AssociationSet Name="FK__users__role_id__4BAC3F29" Association="Self.FK__users__role_id__4BAC3F29">
             <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="salonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -163,7 +164,7 @@
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="users" Relationship="Self.FK__users__role_id__398D8EEE" FromRole="roles" ToRole="users" />
+          <NavigationProperty Name="users" Relationship="Self.FK__users__role_id__4BAC3F29" FromRole="roles" ToRole="users" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -174,9 +175,9 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="role_id" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="roles" Relationship="Self.FK__users__role_id__398D8EEE" FromRole="users" ToRole="roles" />
+          <NavigationProperty Name="roles" Relationship="Self.FK__users__role_id__4BAC3F29" FromRole="users" ToRole="roles" />
         </EntityType>
-        <Association Name="FK__users__role_id__398D8EEE">
+        <Association Name="FK__users__role_id__4BAC3F29">
           <End Role="roles" Type="Self.roles" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -188,12 +189,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="salonEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="salonEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="citas" EntityType="Self.citas" />
           <EntitySet Name="productos" EntityType="Self.productos" />
           <EntitySet Name="roles" EntityType="Self.roles" />
           <EntitySet Name="users" EntityType="Self.users" />
-          <AssociationSet Name="FK__users__role_id__398D8EEE" Association="Self.FK__users__role_id__398D8EEE">
+          <AssociationSet Name="FK__users__role_id__4BAC3F29" Association="Self.FK__users__role_id__4BAC3F29">
             <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
@@ -216,25 +217,25 @@
             <Parameter Name="ConProducto" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="BorrarCita_SP">
-          <Parameter Name="id_cita" Mode="In" Type="Int32" />
+            <Parameter Name="id_cita" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="BorrarProducto_SP">
-          <Parameter Name="ConProducto" Mode="In" Type="Int64" />
+            <Parameter Name="ConProducto" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ConsultarCitaSP" ReturnType="Collection(salonModel.ConsultarCitaSP_Result)" />
           <FunctionImport Name="ConsultarProductoSP" ReturnType="Collection(salonModel.ConsultarProductoSP_Result)" />
           <FunctionImport Name="ConsultarUnaCita" ReturnType="Collection(salonModel.ConsultarUnaCita_Result)">
-          <Parameter Name="id_cita" Mode="In" Type="Int32" />
+            <Parameter Name="id_cita" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultarUnProductoSP" ReturnType="Collection(salonModel.ConsultarUnProductoSP_Result)">
-          <Parameter Name="ConProducto" Mode="In" Type="Int32" />
+            <Parameter Name="ConProducto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="IniciarSesionSP" ReturnType="Collection(salonModel.IniciarSesionSP_Result)">
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="RecuperarCuentaSP" ReturnType="Collection(salonModel.RecuperarCuentaSP_Result)">
-          <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="RegistrarCitaSP">
             <Parameter Name="estilista" Mode="In" Type="String" />
@@ -312,7 +313,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="salonModelStoreContainer" CdmEntityContainer="salonEntities">
+        <EntityContainerMapping StorageEntityContainer="salonModelStoreContainer" CdmEntityContainer="salonEntities1">
           <EntitySetMapping Name="citas">
             <EntityTypeMapping TypeName="salonModel.citas">
               <MappingFragment StoreEntitySet="citas">
@@ -454,7 +455,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
