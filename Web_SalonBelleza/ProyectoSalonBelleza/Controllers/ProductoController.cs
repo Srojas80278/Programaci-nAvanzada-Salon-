@@ -26,8 +26,10 @@ namespace ProyectoSalonBelleza.Controllers
             string respuesta = ProductoModelo.RegistrarProducto(entidad);
             if (respuesta == "OK")
             {
-                ViewBag.MensajeUsuario = "Registro Exitoso";
+                //ViewBag.MensajeUsuario = "Registro Exitoso";
+                return RedirectToAction("ConsultarProducto", "Producto");
             }
+            else
             {
                 ViewBag.MensajeUsuario = "No se ha podido registrar su información";
                 return View();

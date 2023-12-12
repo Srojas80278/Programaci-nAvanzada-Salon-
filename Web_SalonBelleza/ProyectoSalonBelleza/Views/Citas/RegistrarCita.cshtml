@@ -1,15 +1,10 @@
 ﻿@model ProyectoSalonBelleza.Entidades.CitaEntidad
 @{
     ViewBag.Title = "RegistrarCita";
-    Layout = null; 
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
+
 <body>
     <div class="container">
         <h2>Registrar Cita</h2>
@@ -20,51 +15,61 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-group">
-                @Html.LabelFor(model => model.estilista, htmlAttributes: new { @class = "control-label col-md-2" })
+                <label>Estilista</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.estilista, new { htmlAttributes = new { @class = "form-control", id = "estilista" } })
                     @Html.ValidationMessageFor(model => model.estilista, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <br>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.sede, htmlAttributes: new { @class = "control-label col-md-2" })
+                <label>Sede</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.sede, new { htmlAttributes = new { @class = "form-control", id = "sede" } })
                     @Html.ValidationMessageFor(model => model.sede, "", new { @class = "text-danger" })
                 </div>
-            </div> <div class="form-group">
-                @Html.LabelFor(model => model.nombre_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label>Nombre del Cliente</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.nombre_cliente, new { htmlAttributes = new { @class = "form-control", id = "nombre_cliente" } })
                     @Html.ValidationMessageFor(model => model.nombre_cliente, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <br>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.servicio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <label>Servicio</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.servicio, new { htmlAttributes = new { @class = "form-control", id = "servicio" } })
                     @Html.ValidationMessageFor(model => model.servicio, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <br>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.descripcion_servicio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <label>Descripcion del Servicio</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.descripcion_servicio, new { htmlAttributes = new { @class = "form-control", id = "descripcion_servicio" } })
                     @Html.ValidationMessageFor(model => model.descripcion_servicio, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <br>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <button type="submit" class="btn btn-primary">Crear</button>
                 </div>
             </div>
+            <br>
+
+            <a href="@Url.Action("ConsultarCitas","Citas")" class="btn btn-danger">Cancelar</a>
+
         }
     </div>
 
 
 </body>
-</html>

@@ -21,7 +21,7 @@ namespace ApiSalonBelleza.Controllers
             {
                 context.RegistrarProductoSP(q.Nombre, q.Descripcion, q.Cantidad, q.Precio, q.Imagen, q.Estado);
 
-                return "Registro Realizado Correctamente";
+                return "OK";
             }
         }
 

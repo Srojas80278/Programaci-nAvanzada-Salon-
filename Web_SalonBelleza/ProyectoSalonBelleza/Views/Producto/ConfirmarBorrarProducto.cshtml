@@ -2,51 +2,46 @@
 
 @{
     ViewBag.Title = "Confirmar Borrar Producto";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Eliminar Producto?</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>@ViewBag.Title</title>
-    <!-- Agregar las referencias a Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
 <body>
+    <div class="container">
+        <h2>Eliminar Producto?</h2>
 
+        @using (Html.BeginForm("BorrarUnProducto2", "Producto", FormMethod.Post, new { @class = "form-horizontal", id = "citaForm" }))
+        {
+            @Html.HiddenFor(m => m.ConProducto)
 
-    @using (Html.BeginForm("BorrarUnProducto2", "Producto", FormMethod.Post, new { @class = "form-horizontal", id = "citaForm" }))
-    {
-        @Html.HiddenFor(m => m.ConProducto)
+            <div class="form-group">
+                <label>Nombre producto</label>
+                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-lg", @placeholder = "Nombre", @type = "text" })
+            </div><br>
 
-        <div class="form-group">
-            <label>Nombre producto</label>
-            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-lg", @placeholder = "Nombre", @type = "text" })
-        </div>
-        <div class="form-group">
-            <label>Descripcion del producto</label>
-            @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control form-control-lg", @placeholder = "Descripcion", @type = "text" })
-        </div>
-        <div class="form-group">
-            <label>Cantidad de productos</label>
-            @Html.TextBoxFor(m => m.Cantidad, new { @class = "form-control form-control-lg", @placeholder = "Cantidad", @type = "number" })
-        </div>
-        <div class="form-group">
-            <label>Precio</label>
-            @Html.TextBoxFor(m => m.Precio, new { @class = "form-control form-control-lg", @placeholder = "Precio", @type = "decimal" })
-        </div>
-        <div class="form-group">
-            <label>Imagen</label>
-            @Html.TextBoxFor(m => m.Imagen, new { @class = "form-control form-control-lg", @placeholder = "Imagen", @type = "text" })
-        </div>
-      
-        <button type="submit" class="btn btn-primary mr-2">Borrar Cita</button>
-     } 
+            <div class="form-group">
+                <label>Descripcion del producto</label>
+                @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control form-control-lg", @placeholder = "Descripcion", @type = "text" })
+            </div><br>
 
+            <div class="form-group">
+                <label>Cantidad de productos</label>
+                @Html.TextBoxFor(m => m.Cantidad, new { @class = "form-control form-control-lg", @placeholder = "Cantidad", @type = "number" })
+            </div><br>
+
+            <div class="form-group">
+                <label>Precio</label>
+                @Html.TextBoxFor(m => m.Precio, new { @class = "form-control form-control-lg", @placeholder = "Precio", @type = "decimal" })
+            </div><br>
+
+            <div class="form-group">
+                <label>Imagen</label>
+                @Html.TextBoxFor(m => m.Imagen, new { @class = "form-control form-control-lg", @placeholder = "Imagen", @type = "text" })
+            </div><br>
+
+            <button type="submit" class="btn btn-primary mr-2">Borrar Cita</button><br><br>
+            <a href="@Url.Action("ConsultarProducto","Producto")" class="btn btn-danger">Cancelar</a>
+        }
+    </div>
 </body>
-</html>
+

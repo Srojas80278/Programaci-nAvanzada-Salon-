@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="salonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="salonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="citas">
           <Key>
             <PropertyRef Name="id_cita" />
@@ -129,8 +129,7 @@
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="salonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -217,25 +216,25 @@
             <Parameter Name="ConProducto" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="BorrarCita_SP">
-            <Parameter Name="id_cita" Mode="In" Type="Int32" />
+          <Parameter Name="id_cita" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="BorrarProducto_SP">
-            <Parameter Name="ConProducto" Mode="In" Type="Int64" />
+          <Parameter Name="ConProducto" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ConsultarCitaSP" ReturnType="Collection(salonModel.ConsultarCitaSP_Result)" />
           <FunctionImport Name="ConsultarProductoSP" ReturnType="Collection(salonModel.ConsultarProductoSP_Result)" />
           <FunctionImport Name="ConsultarUnaCita" ReturnType="Collection(salonModel.ConsultarUnaCita_Result)">
-            <Parameter Name="id_cita" Mode="In" Type="Int32" />
+          <Parameter Name="id_cita" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultarUnProductoSP" ReturnType="Collection(salonModel.ConsultarUnProductoSP_Result)">
-            <Parameter Name="ConProducto" Mode="In" Type="Int32" />
+          <Parameter Name="ConProducto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="IniciarSesionSP" ReturnType="Collection(salonModel.IniciarSesionSP_Result)">
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="RecuperarCuentaSP" ReturnType="Collection(salonModel.RecuperarCuentaSP_Result)">
-            <Parameter Name="email" Mode="In" Type="String" />
+          <Parameter Name="email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="RegistrarCitaSP">
             <Parameter Name="estilista" Mode="In" Type="String" />

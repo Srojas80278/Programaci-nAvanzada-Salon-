@@ -1,4 +1,10 @@
-﻿-- Crear la tabla roles
+﻿CREATE DATABASE salon;
+GO
+
+use salon;
+GO
+
+-- Crear la tabla roles
 CREATE TABLE roles (
     id BIGINT IDENTITY(1,1) PRIMARY KEY,
     name VARCHAR(100) NOT NULL

@@ -369,6 +369,7 @@
     <Content Include="Views\Producto\ConsultarProducto.cshtml" />
     <Content Include="Views\Producto\ConfirmarBorrarProducto.cshtml" />
     <Content Include="Views\Producto\ActualizarProducto.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

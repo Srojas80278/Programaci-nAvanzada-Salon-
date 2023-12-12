@@ -24,10 +24,13 @@
 </head>
 <body id="page-top">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top" style="margin-right: 100px;"><img src="~/templates/assets/img/utopia_logo.png" alt="..." style="width: 150px; height: auto;" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#page-top" style="margin-right: 100px;">
+                <img src="~/templates/assets/img/utopia_logo.png" alt="..." style="width: 150px; height: auto;" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars ms-1"></i>
             </button>
@@ -41,7 +44,6 @@
                     {
                         <li class="nav-item">@Html.ActionLink("Modulo Citas", "ConsultarCitas", "Citas", new { area = "" }, new { @class = "nav-link" })</li>
                         <li class="nav-item">@Html.ActionLink("Modulo Productos", "ConsultarProducto", "Producto", new { area = "" }, new { @class = "nav-link" })</li>
-
                     }
 
                     @if (Session["name"] == null)
@@ -52,7 +54,8 @@
                     else
                     {
                         <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
                                 @Session["name"] <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -64,280 +67,18 @@
             </div>
         </div>
     </nav>
-    <!-- Masthead-->
-    <header class="masthead masthead-box">
-        <div class="container">
-            <div class="masthead-subheading">Bienvenidos al Salón de Belleza</div>
-            <div class="masthead-heading text-uppercase">UTOPIA</div>
-            <a class="btn btn-primary btn-xl text-uppercase" href="#services">Ver más</a>
-        </div>
-    </header>
-    <!-- Services-->
-    <section class="page-section" id="services">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Servicios</h2>
-                <h3 class="section-subheading text-muted">Nuestras especialidades son:</h3>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <img src="~/templates/assets/img/Tintes.png" alt="Tintes Image" style="width: 250px; height: auto;">
-                    </div>
-                    <h4 class="my-3">Tintes</h4>
-                    <p class="text-muted">Transformamos tu cabello en una obra de arte. Nuestro equipo de expertos en coloración capilar te brinda una experiencia única y personalizada</p>
-                </div>
-                <div class="col-md-4">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <img src="~/templates/assets/img/CortesCabello.png" alt="Cortes de Cabello Image" style="width: 200px; height: auto;">
-                    </div>
-                    <h4 class="my-3">Cortes de Cabello</h4>
-                    <p class="text-muted">Nuestro talentoso equipo de estilistas se especializa en cortes de cabello tanto para hombres como para mujeres.</p>
-                </div>
-                <div class="col-md-4">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <img src="~/templates/assets/img/Barberia.png" alt="Corte de Barba Image" style="width: 200px; height: auto;">
-                    </div>
-                    <h4 class="my-3">Corte de Barba</h4>
-                    <p class="text-muted">Nuestros barberos expertos dominan el arte de los cortes de cabello y afeitado de barba, llevando la precisión y la atención al detalle al siguiente nivel.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Productos Grid-->
-    <section class="page-section bg-light" id="portfolio">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Portafolio</h2>
-                <h3 class="section-subheading text-muted">Estos son algunos ejemplos de nuestros trabajos.</h3>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 1-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="~/templates/assets/img/portfolio/1.png" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Lavado</div>
-                            <div class="portfolio-caption-subheading text-muted">Todo tipo de cabello</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 2-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="~/templates/assets/img/portfolio/2.png" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Corte de Barba</div>
-                            <div class="portfolio-caption-subheading text-muted">Corte y delineado</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 3-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="~/templates/assets/img/portfolio/3.png" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Aplanchado</div>
-                            <div class="portfolio-caption-subheading text-muted">El estilo que tu quieras</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                    <!-- Portfolio item 4-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="~/templates/assets/img/portfolio/4.png" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Corte de Cabello Hombre</div>
-                            <div class="portfolio-caption-subheading text-muted">Todo tipo de corte</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                    <!-- Portfolio item 5-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="~/templates/assets/img/portfolio/5.png" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Limpieza Facial</div>
-                            <div class="portfolio-caption-subheading text-muted">Con productos de la mas alta calidad</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <!-- Portfolio item 6-->
-                    <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="~/templates/assets/img/portfolio/6.png" alt="..." />
-                        </a>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">Tintes</div>
-                            <div class="portfolio-caption-subheading text-muted">El color/estilo que prefieras</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Team-->
-    <section class="page-section bg-light" id="team">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Nuestro Equipo</h2>
-                <h3 class="section-subheading text-muted">Nuestro equipo esta conformado por varios profesionales.</h3>
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="~/templates/assets/img/team/1.jpg" alt="..." />
-                        <h4>Carlos Rivas</h4>
-                        <p class="text-muted">Estilista</p>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Carlos Rivas Twitter Profile"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Carlos Rivas Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Carlos Rivas LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="~/templates/assets/img/team/2.jpg" alt="..." />
-                        <h4>Diana Petersen</h4>
-                        <p class="text-muted">Propietaria</p>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="~/templates/assets/img/team/3.jpg" alt="..." />
-                        <h4>Byron Rodriguez</h4>
-                        <p class="text-muted">Barbero</p>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Byron Rodriguez Twitter Profile"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Byron Rodriguez Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Byron Rodriguez LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Estamos comprometidos a brindar un servicio de alta calidad y nuestro equipo está siempre preparado para asistirle.</p></div>
-            </div>
-        </div>
-    </section>
-    <!-- Clients-->
-    <div class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="~/templates/assets/img/logos/logo1.png" alt="..." aria-label="Davinest Logo" style="width: 150px; height: auto;" /></a>
-                </div>
-                <div class="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="~/templates/assets/img/logos/logo2.png" alt="..." aria-label="Moroccanoil Logo" style="width: 150px; height: auto;" /></a>
-                </div>
-                <div class="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="~/templates/assets/img/logos/logo3.png" alt="..." aria-label="Insight Logo" style="width: 150px; height: auto;" /></a>
-                </div>
-                <div class="col-md-3 col-sm-6 my-3">
-                    <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="~/templates/assets/img/logos/logo4.png" alt="..." aria-label="Olaplex Logo" /></a>
-                </div>
-            </div>
-        </div>
+    <div class="" style="margin-bottom: 200px;">
     </div>
 
-    <!-- Contact-->
-    <section class="page-section" id="contact">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Contact Us</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-            </div>
-            <!-- * * * * * * * * * * * * * * *-->
-            <!-- * * SB Forms Contact Form * *-->
-            <!-- * * * * * * * * * * * * * * *-->
-            <!-- This form is pre-integrated with SB Forms.-->
-            <!-- To make this form functional, sign up at-->
-            <!-- https://startbootstrap.com/solution/contact-forms-->
-            <!-- to get an API token!-->
-            <form id="contactForm">
-                <div class="row align-items-stretch mb-5">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <!-- Name input-->
-                            <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                        </div>
-                        <div class="form-group">
-                            <!-- Email address input-->
-                            <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
-                            <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                        </div>
-                        <div class="form-group mb-md-0">
-                            <!-- Phone number input-->
-                            <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group form-group-textarea mb-md-0">
-                            <!-- Message input-->
-                            <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
-                            <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Submit success message-->
-                <!---->
-                <!-- This is what your users will see when the form-->
-                <!-- has successfully submitted-->
-                <div class="d-none" id="submitSuccessMessage">
-                    <div class="text-center text-white mb-3">
-                        <div class="fw-bolder">Form submission successful!</div>
-                        To activate this form, sign up at
-                        <br />
-                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                    </div>
-                </div>
-                <!-- Submit error message-->
-                <!---->
-                <!-- This is what your users will see when there is-->
-                <!-- an error submitting the form-->
-                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                <!-- Submit Button-->
-                <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>
-            </form>
-        </div>
-    </section>
+    @RenderBody()
+
+    <div class="" style="margin-bottom: 200px;">
+    </div>
     <!-- Footer-->
-    <footer class="footer py-4">
+    <footer class="footer py-4 bg-light">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2023</div>
+                <div class="col-lg-4 text-lg-start">Utopía Beauty Salon &copy; Programación Avanzada Web Site</div>
                 <div class="col-lg-4 my-3 my-lg-0">
                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -350,165 +91,9 @@
             </div>
         </div>
     </footer>
-    <!-- Portfolio Modals-->
-    <!-- Portfolio item 1 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="~/templates/assets/img/close-icon.svg" alt="Close modal" /></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="modal-body">
-                                <!-- Project details-->
-                                <h2 class="text-uppercase">Lavado</h2>
-                                <p class="item-intro text-muted">Todo tipo de cabello</p>
-                                <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/1.png" alt="..." />
-                                <p>En Utopia Beauty Salon, el lavado de cabello es una experiencia de lujo que te transportará a un oasis de relajación y rejuvenecimiento. Nuestros profesionales del cuidado capilar saben que un buen lavado es la base de un cabello saludable y radiante. Con productos de alta calidad y técnicas de masaje capilar, te proporcionamos una sensación de frescura y revitalización que te hará sentir como si estuvieras en un verdadero paraíso.</p>
 
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Cerrar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio item 2 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="~/templates/assets/img/close-icon.svg" alt="Close modal" /></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="modal-body">
-                                <!-- Project details-->
-                                <h2 class="text-uppercase">Corte de Barba</h2>
-                                <p class="item-intro text-muted">Corte y delineado</p>
-                                <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/2.png" alt="..." />
-                                <p>En Utopia Beauty Salon, creemos que la barba es más que un simple accesorio facial; es una declaración de estilo y personalidad. Nuestros expertos barberos entienden la importancia de un corte de barba preciso y personalizado. Con destreza y atención al detalle, esculpimos y diseñamos tu barba de acuerdo a tus preferencias y rasgos individuales</p>
-
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Cerrar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio item 3 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="~/templates/assets/img/close-icon.svg" alt="Close modal" /></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="modal-body">
-                                <!-- Project details-->
-                                <h2 class="text-uppercase">Aplanchado</h2>
-                                <p class="item-intro text-muted">El estilo que tu quieras</p>
-                                <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/3.png" alt="..." />
-                                <p>En Utopia Beauty Salon, transformamos cabellos rebeldes en mares de suavidad y brillo. Nuestro servicio de alisado esculpe el cabello con precisión y lo deja radiante. Utilizamos las técnicas más avanzadas y productos de primera calidad para lograr resultados deslumbrantes. Ya sea que desees un cabello liso como la seda o simplemente reducir el frizz y los rizos, estamos aquí para ayudarte a alcanzar el look que deseas</p>
-
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Cerrar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio item 4 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="~/templates/assets/img/close-icon.svg" alt="Close modal" /></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="modal-body">
-                                <!-- Project details-->
-                                <h2 class="text-uppercase">Corte de Cabello Hombre</h2>
-                                <p class="item-intro text-muted">Todo tipo de corte</p>
-                                <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/4.png" alt="..." />
-                                <p>En Utopia Beauty Salon, los cortes de cabello para hombres son más que una simple rutina; son una expresión de estilo y confianza. Nuestros expertos estilistas para hombres comprenden la importancia de un corte de cabello impecable y personalizado. Con precisión y creatividad, esculpimos tu cabello para resaltar tus rasgos faciales y tu estilo individual. Ya sea que busques un corte clásico, moderno o audaz, estamos aquí para asegurarnos de que te sientas seguro y con una apariencia excepcional.</p>
-
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Cerrar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio item 5 modal popup-->
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="~/templates/assets/img/close-icon.svg" alt="Close modal" /></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="modal-body">
-                                <!-- Project details-->
-                                <h2 class="text-uppercase">Limpieza Facial</h2>
-                                <p class="item-intro text-muted">Con productos de la mas alta calidad</p>
-                                <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/5.jpg" alt="..." />
-                                <p>En Utopia Beauty Salon, la limpieza facial es un ritual de rejuvenecimiento que restaura la luminosidad y la frescura de tu piel. Nuestros expertos en cuidado de la piel entienden la importancia de un cutis saludable y radiante. Utilizamos productos de alta calidad y técnicas especializadas para limpiar, exfoliar e hidratar tu piel, eliminando las impurezas y devolviendo la vitalidad. Ya sea que busques una piel más suave, una tez más uniforme o un refrescamiento completo, estamos aquí para ayudarte a lograr una piel envidiable</p>
-
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Cerrar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="~/templates/assets/img/close-icon.svg" alt="Close modal" /></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="modal-body">
-                                <h2 class="text-uppercase">Tintes</h2>
-                                <p class="item-intro text-muted">El color/estilo que prefieras</p>
-                                <img class="img-fluid d-block mx-auto" src="~/templates/assets/img/portfolio/6.jpg" alt="..." />
-                                <p>En Utopia Beauty Salon, la coloración capilar es nuestra especialidad y nuestra pasión. Nuestros talentosos coloristas entienden que el color del cabello es una forma poderosa de expresión personal. Usamos productos de alta calidad y técnicas de vanguardia para crear colores vibrantes y duraderos que se adapten a tu estilo y personalidad. Ya sea que busques realzar tu color natural, añadir reflejos sutiles o atreverte con un cambio radical, estamos aquí para convertir tus sueños capilares en realidad</p>
-
-                                <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                    <i class="fas fa-xmark me-1"></i>
-                                    Cerrar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/templates/js/scripts.js"></script>
     @*<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>*@
 </body>
 </html>
-
-@RenderBody()
