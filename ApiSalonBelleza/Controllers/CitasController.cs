@@ -53,7 +53,6 @@ namespace ApiSalonBelleza.Controllers
                 {
                     context.ActualizarCitaSP(q.estilista, q.fecha = DateTime.Now,
                     q.sede, q.nombre_cliente, q.servicio, q.descripcion_servicio, q.id_cita);
-
                     return "OK";
                 }
         }
@@ -62,13 +61,11 @@ namespace ApiSalonBelleza.Controllers
         [Route("BorrarUnaCita2")]
         public String BorrarUnaCita2(Cita q)
         {
-
             using (var context = new salonEntities())
             {
                 context.BorrarCita_SP(q.id_cita);
                 return "OK";
             }
         }
-
     }
 }

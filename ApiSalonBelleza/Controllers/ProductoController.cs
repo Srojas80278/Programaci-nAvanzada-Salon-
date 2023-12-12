@@ -35,23 +35,38 @@ namespace ApiSalonBelleza.Controllers
             }
         }
 
-        //[HttpDelete]
-        //[Route("EliminarProducto/{id}")]
-        //public IHttpActionResult EliminarProducto(int id)
-        //{
-        //    try
-        //    {
-        //        using (var context = new salonEntities())
-        //        {
-        //            context.EliminarProductoSP(id);
+        [HttpGet]
+        [Route("ConsultarUnProducto")]
+        public ConsultarUnProductoSP_Result ConsultarUnProducto(int q) 
+        {
+            using (var contexto = new salonEntities())
+            {
+                return contexto.ConsultarUnProductoSP(q).FirstOrDefault();
+            }
+        }
 
-        //            return Ok("Producto eliminado correctamente");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return InternalServerError(ex);
-        //    }
-        //}
+
+        [HttpPut]
+        [Route("ActualizarProducto")]
+        public String ActualizarProducto(ProductoEnt q)
+        {
+            using (var context = new salonEntities())   //La fecha en el sistema es para ver cuando solicita la cita.
+            {
+                context.ActualizarProductoSP(q.Nombre, q.Descripcion,
+                q.Cantidad, q.Precio, q.Imagen, q.Estado, q.ConProducto);
+                return "OK";
+            }
+        }
+
+        [HttpPost]
+        [Route("BorrarUnProducto2")]
+        public String BorrarUnProducto2(ProductoEnt q)
+        {
+            using (var context = new salonEntities())
+            {
+                context.BorrarProducto_SP(q.ConProducto);
+                return "OK";
+            }
+        }
     }
 }

@@ -39,10 +39,8 @@
 
                     @if (Session["role"] != null && Convert.ToInt32(Session["role"]) == 1)
                     {
-                        <li class="nav-item">@Html.ActionLink("Registrar Cita", "RegistrarCita", "Citas", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Consultar Cita", "ConsultarCitas", "Citas", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Registrar Productos", "RegistrarProducto", "Producto", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Consultar Productos", "ConsultarProducto", "Producto", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Modulo Citas", "ConsultarCitas", "Citas", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Modulo Productos", "ConsultarProducto", "Producto", new { area = "" }, new { @class = "nav-link" })</li>
 
                     }
 

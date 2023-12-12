@@ -31,15 +31,39 @@ namespace ProyectoSalonBelleza.Modelos
                 return res.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
             }
         }
-        //public string EliminarProducto(int ConProducto)
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        var urlApi = $"{rutaServidor}EliminarProducto/{ConProducto}";
-        //        var res = client.DeleteAsync(urlApi).Result;
-        //        return res.Content.ReadFromJsonAsync<string>().Result;
-        //    }
-        //}
-    }
 
+        public ProductoEnt ConsultarUnProducto(int q)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "ConsultarUnProducto?q=" + q;
+                var res = client.GetAsync(urlApi).Result;
+                return res.Content.ReadFromJsonAsync<ProductoEnt>().Result;
+            }
+        }
+
+        public string ActualizarProducto(ProductoEnt entidad) //Cambiamos Nombre
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "ActualizarProducto";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PutAsync(urlApi, jsonData).Result;    //Cambiamos el "Put"
+                return res.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
+
+        public string BorrarUnProducto2(ProductoEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                var urlApi = rutaServidor + "BorrarUnProducto2";
+                var jsonData = JsonContent.Create(entidad);
+                var res = client.PostAsync(urlApi, jsonData).Result;
+                return res.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
+
+
+    }
 }

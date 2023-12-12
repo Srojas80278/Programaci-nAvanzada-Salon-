@@ -27,7 +27,6 @@ namespace ApiSalonBelleza.Modelo
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<carrito> carrito { get; set; }
         public virtual DbSet<citas> citas { get; set; }
         public virtual DbSet<productos> productos { get; set; }
         public virtual DbSet<roles> roles { get; set; }
@@ -66,6 +65,39 @@ namespace ApiSalonBelleza.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarCitaSP", estilistaParameter, fechaParameter, sedeParameter, nombre_clienteParameter, servicioParameter, descripcion_servicioParameter, id_citaParameter);
         }
     
+        public virtual int ActualizarProductoSP(string nombre, string descripcion, Nullable<int> cantidad, Nullable<decimal> precio, string imagen, Nullable<bool> estado, Nullable<long> conProducto)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var imagenParameter = imagen != null ?
+                new ObjectParameter("Imagen", imagen) :
+                new ObjectParameter("Imagen", typeof(string));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var conProductoParameter = conProducto.HasValue ?
+                new ObjectParameter("ConProducto", conProducto) :
+                new ObjectParameter("ConProducto", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarProductoSP", nombreParameter, descripcionParameter, cantidadParameter, precioParameter, imagenParameter, estadoParameter, conProductoParameter);
+        }
+    
         public virtual int BorrarCita_SP(Nullable<int> id_cita)
         {
             var id_citaParameter = id_cita.HasValue ?
@@ -73,6 +105,15 @@ namespace ApiSalonBelleza.Modelo
                 new ObjectParameter("id_cita", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BorrarCita_SP", id_citaParameter);
+        }
+    
+        public virtual int BorrarProducto_SP(Nullable<long> conProducto)
+        {
+            var conProductoParameter = conProducto.HasValue ?
+                new ObjectParameter("ConProducto", conProducto) :
+                new ObjectParameter("ConProducto", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BorrarProducto_SP", conProductoParameter);
         }
     
         public virtual ObjectResult<ConsultarCitaSP_Result> ConsultarCitaSP()
@@ -94,13 +135,13 @@ namespace ApiSalonBelleza.Modelo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarUnaCita_Result>("ConsultarUnaCita", id_citaParameter);
         }
     
-        public virtual int EliminarProductoSP(Nullable<int> conProducto)
+        public virtual ObjectResult<ConsultarUnProductoSP_Result> ConsultarUnProductoSP(Nullable<int> conProducto)
         {
             var conProductoParameter = conProducto.HasValue ?
                 new ObjectParameter("ConProducto", conProducto) :
                 new ObjectParameter("ConProducto", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarProductoSP", conProductoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarUnProductoSP_Result>("ConsultarUnProductoSP", conProductoParameter);
         }
     
         public virtual ObjectResult<IniciarSesionSP_Result> IniciarSesionSP(string email, string password)

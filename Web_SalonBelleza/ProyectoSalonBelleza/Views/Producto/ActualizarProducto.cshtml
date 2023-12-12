@@ -1,0 +1,50 @@
+﻿@model ProyectoSalonBelleza.Entidades.ProductoEnt
+
+@{
+    ViewBag.Title = "ActualizarProducto";
+    Layout = null; // Asegúrate de que Layout esté establecido como null
+}
+
+<h2>ActualizarProducto</h2>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    @using (Html.BeginForm("ActualizarProducto", "Producto", FormMethod.Post, new { @class = "form-horizontal", id = "" }))
+    {
+
+        @Html.HiddenFor(m => m.ConProducto)
+
+        <div class="form-group">
+            <label>Nombre producto</label>
+            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-lg", @placeholder = "Nombre", @type = "text" })
+        </div>
+        <div class="form-group">
+            <label>Descripcion del producto</label>
+            @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control form-control-lg", @placeholder = "Descripcion", @type = "text" })
+        </div>
+        <div class="form-group">
+            <label>Cantidad de productos</label>
+            @Html.TextBoxFor(m => m.Cantidad, new { @class = "form-control form-control-lg", @placeholder = "Cantidad", @type = "number" })
+        </div>
+        <div class="form-group">
+            <label>Precio</label>
+            @Html.TextBoxFor(m => m.Precio, new { @class = "form-control form-control-lg", @placeholder = "Precio", @type = "decimal" })
+        </div>
+        <div class="form-group">
+            <label>Imagen</label>
+            @Html.TextBoxFor(m => m.Imagen, new { @class = "form-control form-control-lg", @placeholder = "Imagen", @type = "text" })
+        </div>
+
+        <button type="submit" class="btn btn-primary mr-2">Actualizar Cita</button>
+     }
+    <!-- AHORA FALTA AGREGAR EL ACTUALIZAR PRODUCTO (UNA VISTA)-->
+
+</body>
+</html>

@@ -14,12 +14,6 @@ namespace ApiSalonBelleza.Modelo
     
     public partial class productos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public productos()
-        {
-            this.carrito = new HashSet<carrito>();
-        }
-    
         public long ConProducto { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
@@ -27,8 +21,5 @@ namespace ApiSalonBelleza.Modelo
         public decimal Precio { get; set; }
         public string Imagen { get; set; }
         public bool Estado { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<carrito> carrito { get; set; }
     }
 }

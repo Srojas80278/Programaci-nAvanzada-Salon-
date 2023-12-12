@@ -16,7 +16,12 @@
     <div class="container">
         <h2>Consultar Citas</h2>
 
-
+        <script>
+            if (Session["role"] == 2) {
+                window.location.href = 'http://www.tu-pagina.com/login';
+            }
+            console.log(Session["role"]);
+        </script>
 
         <div class="d-flex justify-content-center">
             @Html.ActionLink("Crear Nueva Cita", "RegistrarCita", null, new { @class = "btn btn-primary" })
@@ -32,8 +37,11 @@
                     <th>Nombre del Cliente</th>
                     <th>Servicio</th>
                     <th>Descripción del Servicio</th>
-                    <th>Actualizar</th>
-                    <th>Borrar</th>
+                    @if (Session["role"] != null && Convert.ToInt32(Session["role"]) == 1)
+                    {
+                        <th>Actualizar</th>
+                        <th>Borrar</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -46,12 +54,16 @@
                         <td>@Html.DisplayFor(modelItem => item.nombre_cliente)</td>
                         <td>@Html.DisplayFor(modelItem => item.servicio)</td>
                         <td>@Html.DisplayFor(modelItem => item.descripcion_servicio)</td>
-                        <td style="text-align:center">
-                            <a href="@Url.Action("ActualizarCita","Citas", new { q = item.id_cita })"><i class="fa fa-user fa-lg"></i></a>
-                        </td>
-                        <td style="text-align:center">
-                            <a href="@Url.Action("ConfirmarBorrarCita","Citas", new { q = item.id_cita })"><i class="fa fa-user fa-lg"></i></a>
-                        </td>
+
+                        @if (Session["role"] != null && Convert.ToInt32(Session["role"]) == 1)
+                        {
+                            <td style="text-align:center">
+                                <a href="@Url.Action("ActualizarCita","Citas", new { q = item.id_cita })"><i class="fa fa-user fa-lg"></i></a>
+                            </td>
+                            <td style="text-align:center">
+                                <a href="@Url.Action("ConfirmarBorrarCita","Citas", new { q = item.id_cita })"><i class="fa fa-user fa-lg"></i></a>
+                            </td>
+                        }
                     </tr>
                 }
             </tbody>

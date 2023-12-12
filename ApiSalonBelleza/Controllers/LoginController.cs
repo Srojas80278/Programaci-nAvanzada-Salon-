@@ -7,14 +7,14 @@ using System.Web.Http;
 
 using System.IO;
 using ApiSalonBelleza;
-//using ApiSalonBelleza.Smtp;
+using ApiSalonBelleza.Smtp;
 using ApiSalonBelleza.Modelo;
 
 namespace ApiSalonBelleza.Controllers
 {
     public class LoginController : ApiController
     {
-        //Smtp.Smtp smtp = new Smtp.Smtp();
+        Smtp.Smtp smtp = new Smtp.Smtp();
 
         [HttpPost]
         [Route("RegistrarCuenta")]
@@ -70,7 +70,7 @@ namespace ApiSalonBelleza.Controllers
                         html = html.Replace("@@name", datos.name);
                         html = html.Replace("@@password", datos.password);
 
-                        //smtp.EnviarCorreo(datos.email, "Contraseña de Acceso", html);
+                        smtp.EnviarCorreo(datos.email, "Contraseña de Acceso", html);
                         return "OK";
                     }
                     else

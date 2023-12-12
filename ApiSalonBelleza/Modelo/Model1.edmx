@@ -5,17 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="salonModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="carrito">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="user_id" Type="bigint" Nullable="false" />
-          <Property Name="id_producto" Type="bigint" Nullable="false" />
-          <Property Name="cantidad" Type="int" Nullable="false" />
-          <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="subtotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-        </EntityType>
         <EntityType Name="citas">
           <Key>
             <PropertyRef Name="id_cita" />
@@ -57,31 +46,7 @@
           <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="role_id" Type="bigint" Nullable="false" />
         </EntityType>
-        <Association Name="FK__carrito__id_prod__534D60F1">
-          <End Role="productos" Type="Self.productos" Multiplicity="1" />
-          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="productos">
-              <PropertyRef Name="ConProducto" />
-            </Principal>
-            <Dependent Role="carrito">
-              <PropertyRef Name="id_producto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__carrito__user_id__52593CB8">
-          <End Role="users" Type="Self.users" Multiplicity="1" />
-          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="carrito">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__users__role_id__4D94879B">
+        <Association Name="FK__users__role_id__398D8EEE">
           <End Role="roles" Type="Self.roles" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -102,15 +67,27 @@
           <Parameter Name="descripcion_servicio" Type="varchar" Mode="In" />
           <Parameter Name="id_cita" Type="int" Mode="In" />
         </Function>
+        <Function Name="ActualizarProductoSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Cantidad" Type="int" Mode="In" />
+          <Parameter Name="Precio" Type="decimal" Mode="In" />
+          <Parameter Name="Imagen" Type="varchar" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+          <Parameter Name="ConProducto" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="BorrarCita_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_cita" Type="int" Mode="In" />
+        </Function>
+        <Function Name="BorrarProducto_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConProducto" Type="bigint" Mode="In" />
         </Function>
         <Function Name="ConsultarCitaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ConsultarProductoSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ConsultarUnaCita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_cita" Type="int" Mode="In" />
         </Function>
-        <Function Name="EliminarProductoSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ConsultarUnProductoSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ConProducto" Type="int" Mode="In" />
         </Function>
         <Function Name="IniciarSesionSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -143,20 +120,11 @@
           <Parameter Name="Estado" Type="bit" Mode="In" />
         </Function>
         <EntityContainer Name="salonModelStoreContainer">
-          <EntitySet Name="carrito" EntityType="Self.carrito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="citas" EntityType="Self.citas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__carrito__id_prod__534D60F1" Association="Self.FK__carrito__id_prod__534D60F1">
-            <End Role="productos" EntitySet="productos" />
-            <End Role="carrito" EntitySet="carrito" />
-          </AssociationSet>
-          <AssociationSet Name="FK__carrito__user_id__52593CB8" Association="Self.FK__carrito__user_id__52593CB8">
-            <End Role="users" EntitySet="users" />
-            <End Role="carrito" EntitySet="carrito" />
-          </AssociationSet>
-          <AssociationSet Name="FK__users__role_id__4D94879B" Association="Self.FK__users__role_id__4D94879B">
+          <AssociationSet Name="FK__users__role_id__398D8EEE" Association="Self.FK__users__role_id__398D8EEE">
             <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
@@ -166,19 +134,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="salonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="carrito">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int64" Nullable="false" />
-          <Property Name="id_producto" Type="Int64" Nullable="false" />
-          <Property Name="cantidad" Type="Int32" Nullable="false" />
-          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="subtotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="productos" Relationship="Self.FK__carrito__id_prod__534D60F1" FromRole="carrito" ToRole="productos" />
-          <NavigationProperty Name="users" Relationship="Self.FK__carrito__user_id__52593CB8" FromRole="carrito" ToRole="users" />
-        </EntityType>
         <EntityType Name="citas">
           <Key>
             <PropertyRef Name="id_cita" />
@@ -202,7 +157,6 @@
           <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="carrito" Relationship="Self.FK__carrito__id_prod__534D60F1" FromRole="productos" ToRole="carrito" />
         </EntityType>
         <EntityType Name="roles">
           <Key>
@@ -210,7 +164,7 @@
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="users" Relationship="Self.FK__users__role_id__4D94879B" FromRole="roles" ToRole="users" />
+          <NavigationProperty Name="users" Relationship="Self.FK__users__role_id__398D8EEE" FromRole="roles" ToRole="users" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -221,34 +175,9 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="role_id" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="carrito" Relationship="Self.FK__carrito__user_id__52593CB8" FromRole="users" ToRole="carrito" />
-          <NavigationProperty Name="roles" Relationship="Self.FK__users__role_id__4D94879B" FromRole="users" ToRole="roles" />
+          <NavigationProperty Name="roles" Relationship="Self.FK__users__role_id__398D8EEE" FromRole="users" ToRole="roles" />
         </EntityType>
-        <Association Name="FK__carrito__id_prod__534D60F1">
-          <End Role="productos" Type="Self.productos" Multiplicity="1" />
-          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="productos">
-              <PropertyRef Name="ConProducto" />
-            </Principal>
-            <Dependent Role="carrito">
-              <PropertyRef Name="id_producto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__carrito__user_id__52593CB8">
-          <End Role="users" Type="Self.users" Multiplicity="1" />
-          <End Role="carrito" Type="Self.carrito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="carrito">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__users__role_id__4D94879B">
+        <Association Name="FK__users__role_id__398D8EEE">
           <End Role="roles" Type="Self.roles" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -261,20 +190,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="salonEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="carrito" EntityType="Self.carrito" />
           <EntitySet Name="citas" EntityType="Self.citas" />
           <EntitySet Name="productos" EntityType="Self.productos" />
           <EntitySet Name="roles" EntityType="Self.roles" />
           <EntitySet Name="users" EntityType="Self.users" />
-          <AssociationSet Name="FK__carrito__id_prod__534D60F1" Association="Self.FK__carrito__id_prod__534D60F1">
-            <End Role="productos" EntitySet="productos" />
-            <End Role="carrito" EntitySet="carrito" />
-          </AssociationSet>
-          <AssociationSet Name="FK__carrito__user_id__52593CB8" Association="Self.FK__carrito__user_id__52593CB8">
-            <End Role="users" EntitySet="users" />
-            <End Role="carrito" EntitySet="carrito" />
-          </AssociationSet>
-          <AssociationSet Name="FK__users__role_id__4D94879B" Association="Self.FK__users__role_id__4D94879B">
+          <AssociationSet Name="FK__users__role_id__398D8EEE" Association="Self.FK__users__role_id__398D8EEE">
             <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
@@ -287,15 +207,27 @@
             <Parameter Name="descripcion_servicio" Mode="In" Type="String" />
             <Parameter Name="id_cita" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="ActualizarProductoSP">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="Imagen" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="ConProducto" Mode="In" Type="Int64" />
+          </FunctionImport>
           <FunctionImport Name="BorrarCita_SP">
             <Parameter Name="id_cita" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="BorrarProducto_SP">
+            <Parameter Name="ConProducto" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="ConsultarCitaSP" ReturnType="Collection(salonModel.ConsultarCitaSP_Result)" />
           <FunctionImport Name="ConsultarProductoSP" ReturnType="Collection(salonModel.ConsultarProductoSP_Result)" />
           <FunctionImport Name="ConsultarUnaCita" ReturnType="Collection(salonModel.ConsultarUnaCita_Result)">
             <Parameter Name="id_cita" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="EliminarProductoSP">
+          <FunctionImport Name="ConsultarUnProductoSP" ReturnType="Collection(salonModel.ConsultarUnProductoSP_Result)">
             <Parameter Name="ConProducto" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="IniciarSesionSP" ReturnType="Collection(salonModel.IniciarSesionSP_Result)">
@@ -355,6 +287,15 @@
           <Property Type="String" Name="servicio" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="descripcion_servicio" Nullable="false" MaxLength="200" />
         </ComplexType>
+        <ComplexType Name="ConsultarUnProductoSP_Result">
+          <Property Type="Int64" Name="ConProducto" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Imagen" Nullable="true" MaxLength="250" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="IniciarSesionSP_Result">
           <Property Type="Int64" Name="id" Nullable="false" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
@@ -373,18 +314,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="salonModelStoreContainer" CdmEntityContainer="salonEntities">
-          <EntitySetMapping Name="carrito">
-            <EntityTypeMapping TypeName="salonModel.carrito">
-              <MappingFragment StoreEntitySet="carrito">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="citas">
             <EntityTypeMapping TypeName="salonModel.citas">
               <MappingFragment StoreEntitySet="citas">
@@ -431,7 +360,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ActualizarCitaSP" FunctionName="salonModel.Store.ActualizarCitaSP" />
+          <FunctionImportMapping FunctionImportName="ActualizarProductoSP" FunctionName="salonModel.Store.ActualizarProductoSP" />
           <FunctionImportMapping FunctionImportName="BorrarCita_SP" FunctionName="salonModel.Store.BorrarCita_SP" />
+          <FunctionImportMapping FunctionImportName="BorrarProducto_SP" FunctionName="salonModel.Store.BorrarProducto_SP" />
           <FunctionImportMapping FunctionImportName="ConsultarCitaSP" FunctionName="salonModel.Store.ConsultarCitaSP">
             <ResultMapping>
               <ComplexTypeMapping TypeName="salonModel.ConsultarCitaSP_Result">
@@ -471,7 +402,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="EliminarProductoSP" FunctionName="salonModel.Store.EliminarProductoSP" />
+          <FunctionImportMapping FunctionImportName="ConsultarUnProductoSP" FunctionName="salonModel.Store.ConsultarUnProductoSP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="salonModel.ConsultarUnProductoSP_Result">
+                <ScalarProperty Name="ConProducto" ColumnName="ConProducto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="IniciarSesionSP" FunctionName="salonModel.Store.IniciarSesionSP">
             <ResultMapping>
               <ComplexTypeMapping TypeName="salonModel.IniciarSesionSP_Result">

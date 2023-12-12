@@ -10,6 +10,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
 </head>
 <body>
     <div class="container">
@@ -23,30 +25,33 @@
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.ConProducto)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.Nombre)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.Descripcion)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.Cantidad)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.Precio)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.Imagen)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Estado)
+                        <th class="text-center">
+                            Editar
                         </th>
-                        <th>Actions</th>
+                        <th class="text-center">
+                            Eliminar
+                        </th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @foreach (var item in Model)
                     {
@@ -66,18 +71,17 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Precio)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Imagen)
+                            <td style="text-align:center">
+                                <img style="width: 100px" src="@item.Imagen" alt="Imagen">
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Estado)
+                            <td style="text-align:center">
+                                <a href="@Url.Action("ActualizarProducto","Producto", new { q = item.ConProducto })"><i class="fa fa-user fa-lg" style="color: #13FF00;"></i></a>
                             </td>
-                            <td>
-                                @Html.ActionLink("Editar", "EditarProducto", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-warning btn-sm" }) |
-                                @Html.ActionLink("Eliminar", "EliminarProducto", new { /* id=item.PrimaryKey */}, new { @class = "btn btn-danger btn-sm" })
+                            <td style="text-align:center">
+                                <a href="@Url.Action("ConfirmarBorrarProducto","Producto", new { q = item.ConProducto })"><i class="fa fa-user fa-lg" style="color: #13FF00;"></i></a>
                             </td>
                         </tr>
-                    }
+                     }
                 </tbody>
             </table>
         </div>
